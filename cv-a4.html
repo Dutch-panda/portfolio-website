@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ehsan Negahdar — CV (A4 Printable)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --bg: #eef1f0;
+      --panel: #ffffff;
+      --ink: #1b2430;
+      --ink-soft: #5b6472;
+      --accent: #1e6e67;
+      --accent-tint: #e4f0ee;
+      --line: #dee3e3;
+      --mono: 'IBM Plex Mono', monospace;
+    }
+
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 8.6pt;
+      line-height: 1.32;
+      -webkit-font-smoothing: antialiased;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* Top action toolbar (screen only) */
+    .screen-toolbar {
+      max-width: 210mm;
+      margin: 18px auto 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 16px;
+      background: #101116;
+      color: #f4f4f6;
+      border-radius: 8px;
+      font-family: var(--mono);
+      font-size: 12px;
+    }
+
+    .toolbar-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .toolbar-btn {
+      background: #ff7b29;
+      color: #0b0b0d;
+      border: none;
+      padding: 7px 14px;
+      border-radius: 5px;
+      font-family: var(--mono);
+      font-size: 11.5px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .toolbar-btn-secondary {
+      background: #1e222d;
+      color: #f4f4f6;
+      border: 1px solid #303646;
+      padding: 6px 13px;
+      border-radius: 5px;
+      font-family: var(--mono);
+      font-size: 11.5px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .toolbar-link {
+      color: #9ca3af;
+      text-decoration: none;
+    }
+
+    .toolbar-link:hover {
+      color: #ffffff;
+    }
+
+    /* Exact A4 Sheet Container: 210mm x 297mm */
+    .a4-sheet {
+      width: 210mm;
+      height: 297mm;
+      margin: 0 auto 28px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* ---------- Header ---------- */
+    header {
+      padding: 7.2mm 11mm 4.5mm;
+      border-bottom: 1px solid var(--line);
+      flex-shrink: 0;
+    }
+
+    .name-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 12px;
+    }
+
+    h1 {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: 20.5pt;
+      letter-spacing: -0.01em;
+      line-height: 1.05;
+      color: var(--ink);
+    }
+
+    .title {
+      font-family: var(--mono);
+      font-size: 7.8pt;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-top: 2.5px;
+    }
+
+    .contact {
+      font-size: 7.8pt;
+      color: var(--ink-soft);
+      text-align: right;
+      line-height: 1.42;
+      white-space: nowrap;
+    }
+
+    .contact a {
+      color: var(--ink-soft);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+    }
+
+    /* KPI Strip */
+    .kpi-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      margin-top: 3.8mm;
+    }
+
+    .kpi {
+      background: var(--panel);
+      padding: 2mm 3mm;
+    }
+
+    .kpi .num {
+      font-family: var(--mono);
+      font-size: 10.5pt;
+      color: var(--accent);
+      font-weight: 600;
+      line-height: 1.1;
+    }
+
+    .kpi .label {
+      font-size: 6.4pt;
+      color: var(--ink-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.025em;
+      margin-top: 1px;
+      line-height: 1.25;
+    }
+
+    /* ---------- Two-Column Body Filling Remainder of A4 ---------- */
+    .body-grid {
+      display: grid;
+      grid-template-columns: 58mm 1fr;
+      flex: 1;
+      min-height: 0;
+    }
+
+    aside {
+      padding: 4.8mm 6mm 5.5mm 11mm;
+      border-right: 1px solid var(--line);
+      background: #fbfcfc;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    main {
+      padding: 4.8mm 11mm 5.5mm 7.5mm;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h2 {
+      font-family: var(--mono);
+      font-size: 7.2pt;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 1.8mm;
+      padding-bottom: 1mm;
+      border-bottom: 1px solid var(--line);
+      flex-shrink: 0;
+    }
+
+    .aside-section {
+      margin-bottom: 2.2mm;
+    }
+
+    .aside-section:last-child {
+      margin-bottom: 0;
+    }
+
+    p.summary {
+      color: var(--ink);
+      font-size: 7.9pt;
+      line-height: 1.36;
+    }
+
+    .skill-item {
+      font-size: 7.7pt;
+      margin-bottom: 1.25mm;
+      line-height: 1.22;
+    }
+
+    .skill-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .skill-item .sk-name {
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .skill-item .sk-desc {
+      display: block;
+      color: var(--ink-soft);
+      font-size: 7.1pt;
+    }
+
+    .edu-item {
+      margin-bottom: 1.8mm;
+    }
+
+    .edu-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .edu-item .deg {
+      font-weight: 600;
+      font-size: 7.8pt;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+
+    .edu-item .school {
+      font-size: 7.3pt;
+      color: var(--ink-soft);
+    }
+
+    .edu-item .dates {
+      font-family: var(--mono);
+      font-size: 6.7pt;
+      color: var(--accent);
+      margin-top: 0.3mm;
+    }
+
+    .award-item {
+      margin-bottom: 1.4mm;
+      font-size: 7.5pt;
+      line-height: 1.22;
+    }
+
+    .award-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .award-item .a-name {
+      font-weight: 600;
+      color: var(--ink);
+      display: block;
+    }
+
+    .award-item .a-meta {
+      color: var(--ink-soft);
+      font-size: 6.9pt;
+    }
+
+    .lang-item {
+      display: flex;
+      justify-content: space-between;
+      font-size: 7.6pt;
+      margin-bottom: 0.9mm;
+    }
+
+    .lang-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .lang-item .lvl {
+      color: var(--ink-soft);
+      font-family: var(--mono);
+      font-size: 7pt;
+    }
+
+    /* ---------- Experience Entries ---------- */
+    .exp-list {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .exp-entry {
+      padding-bottom: 1.8mm;
+      margin-bottom: 1.8mm;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .exp-entry:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .exp-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 0.3mm;
+    }
+
+    .exp-role {
+      font-size: 8.6pt;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.22;
+    }
+
+    .exp-role .org {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .exp-dates {
+      font-family: var(--mono);
+      font-size: 6.9pt;
+      color: var(--ink-soft);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .exp-meta {
+      font-size: 7.1pt;
+      color: var(--ink-soft);
+      font-style: italic;
+      margin-bottom: 0.8mm;
+    }
+
+    ul.bullets {
+      margin: 0;
+      padding-left: 3.5mm;
+    }
+
+    ul.bullets li {
+      margin-bottom: 0.6mm;
+      color: #2f3943;
+      font-size: 7.85pt;
+      line-height: 1.31;
+    }
+
+    ul.bullets li:last-child {
+      margin-bottom: 0;
+    }
+
+    .current-tag {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 6pt;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+      background: var(--accent-tint);
+      padding: 0.5px 4px;
+      border-radius: 2px;
+      margin-left: 4px;
+      vertical-align: middle;
+    }
+
+    @media print {
+      html, body {
+        background: #ffffff;
+      }
+      .screen-toolbar {
+        display: none !important;
+      }
+      .a4-sheet {
+        margin: 0;
+        border: none;
+        box-shadow: none;
+        width: 210mm;
+        height: 297mm;
+        page-break-after: avoid;
+        break-after: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="screen-toolbar">
+    <a href="./cv.html" class="toolbar-link">← Back to Dark-Mode Portfolio CV</a>
+    <span>A4 Light Printable CV (210mm × 297mm — Single Sheet)</span>
+    <div class="toolbar-actions">
+      <a href="./assets/Ehsan-Negahdar-CV.pdf" download="Ehsan-Negahdar-CV.pdf" class="toolbar-btn">Download A4 PDF ↓</a>
+      <button type="button" class="toolbar-btn-secondary" onclick="window.print()">Print Sheet</button>
+    </div>
+  </div>
+
+  <div class="a4-sheet">
+    <header>
+      <div class="name-row">
+        <div>
+          <h1>Ehsan Negahdar</h1>
+          <div class="title">Business Data Analyst · Strategy &amp; Process Optimization</div>
+        </div>
+        <div class="contact">
+          Amsterdam, Netherlands<br />
+          <a href="mailto:en.mirror@gmail.com">en.mirror@gmail.com</a> · +31 68 494 2790<br />
+          <a href="https://www.linkedin.com/in/ehsan-negahdar/" target="_blank">linkedin.com/in/ehsan-negahdar</a> ·
+          <a href="https://github.com/Dutch-panda" target="_blank">github.com/Dutch-panda</a>
+        </div>
+      </div>
+
+      <div class="kpi-strip">
+        <div class="kpi">
+          <div class="num">6+</div>
+          <div class="label">Years in Data &amp; Analytics</div>
+        </div>
+        <div class="kpi">
+          <div class="num">4</div>
+          <div class="label">Industries: Fintech, Consulting, Retail, Education</div>
+        </div>
+        <div class="kpi">
+          <div class="num">2</div>
+          <div class="label">Master's Degrees</div>
+        </div>
+        <div class="kpi">
+          <div class="num">4</div>
+          <div class="label">Core Tools: SQL, Python, Power BI, Excel</div>
+        </div>
+      </div>
+    </header>
+
+    <div class="body-grid">
+      <aside>
+        <div class="aside-section">
+          <h2>Summary</h2>
+          <p class="summary">
+            Business Data Analyst with experience in consulting, fintech, and process optimization,
+            turning data into actionable insights that improve efficiency, support strategic
+            decisions, and drive business growth. Hands-on experience with Python, SQL, Excel, and
+            Power BI across CRM, process, and transactional data.
+          </p>
+        </div>
+
+        <div class="aside-section">
+          <h2>Skills</h2>
+          <div class="skill-item"><span class="sk-name">SQL</span><span class="sk-desc">Advanced querying, performance tuning</span></div>
+          <div class="skill-item"><span class="sk-name">Python</span><span class="sk-desc">Pandas, NumPy, Matplotlib</span></div>
+          <div class="skill-item"><span class="sk-name">Power BI</span><span class="sk-desc">Dashboards, DAX, data modeling</span></div>
+          <div class="skill-item"><span class="sk-name">ETL &amp; Data Prep</span><span class="sk-desc">Cleaning, transformation, validation</span></div>
+          <div class="skill-item"><span class="sk-name">Data Visualization</span><span class="sk-desc">Storytelling with data</span></div>
+          <div class="skill-item"><span class="sk-name">CRM Analytics</span><span class="sk-desc">Churn, segmentation, engagement</span></div>
+          <div class="skill-item"><span class="sk-name">Process Optimization</span><span class="sk-desc">Process mapping, benchmarking</span></div>
+        </div>
+
+        <div class="aside-section">
+          <h2>Education</h2>
+          <div class="edu-item">
+            <div class="deg">MSc, Digital Business</div>
+            <div class="school">University of Amsterdam</div>
+            <div class="dates">Sep 2024 – Aug 2025</div>
+          </div>
+          <div class="edu-item">
+            <div class="deg">MSc, IT Management</div>
+            <div class="school">University of Tehran</div>
+            <div class="dates">Sep 2019 – Aug 2023</div>
+          </div>
+          <div class="edu-item">
+            <div class="deg">BSc, Business Administration</div>
+            <div class="school">University of Tehran</div>
+            <div class="dates">Sep 2015 – Aug 2019</div>
+          </div>
+        </div>
+
+        <div class="aside-section">
+          <h2>Awards</h2>
+          <div class="award-item">
+            <span class="a-name">Business Talent Fund Scholarship</span>
+            <span class="a-meta">University of Amsterdam, Aug 2024</span>
+          </div>
+          <div class="award-item">
+            <span class="a-name">Direct Entry Master's Talent Award</span>
+            <span class="a-meta">University of Tehran, Sep 2019</span>
+          </div>
+        </div>
+
+        <div class="aside-section">
+          <h2>Languages</h2>
+          <div class="lang-item"><span>English</span><span class="lvl">Professional</span></div>
+          <div class="lang-item"><span>Dutch</span><span class="lvl">A2</span></div>
+          <div class="lang-item"><span>Farsi</span><span class="lvl">Native</span></div>
+        </div>
+      </aside>
+
+      <main>
+        <h2>Experience</h2>
+        <div class="exp-list">
+          <div class="exp-entry">
+            <div class="exp-head">
+              <div class="exp-role">Business Analyst · <span class="org">Pulse Pilates</span><span class="current-tag">Current</span></div>
+              <div class="exp-dates">Dec 2025 – Present</div>
+            </div>
+            <div class="exp-meta">Muscat, Oman</div>
+            <ul class="bullets">
+              <li>Conducted requirement and market analysis for opening a coffee shop within the Pilates studio, including operational workflow and menu development.</li>
+            </ul>
+          </div>
+
+          <div class="exp-entry">
+            <div class="exp-head">
+              <div class="exp-role">Teaching Assistant, Sustainability Honours · <span class="org">UvA Business School</span></div>
+              <div class="exp-dates">Oct 2024 – Jun 2025</div>
+            </div>
+            <div class="exp-meta">Amsterdam, Netherlands</div>
+            <ul class="bullets">
+              <li>Prepared course materials, taught the climate change simulation workshop, and assessed student proposals and final projects.</li>
+            </ul>
+          </div>
+
+          <div class="exp-entry">
+            <div class="exp-head">
+              <div class="exp-role">Business Data Analyst · <span class="org">ZarinPal</span></div>
+              <div class="exp-dates">Jul 2023 – Aug 2025</div>
+            </div>
+            <div class="exp-meta">Fintech</div>
+            <ul class="bullets">
+              <li>Analyzed transaction and user behavior data to identify growth opportunities and develop customer acquisition and retention strategies with product and marketing teams.</li>
+              <li>Built Power BI dashboards tracking key KPIs (transaction volume, conversion rates, engagement) and conducted cohort, funnel, and segmentation analyses.</li>
+              <li>Supported strategic decisions through ad-hoc SQL and Python analyses, optimizing payment processes and risk monitoring systems.</li>
+            </ul>
+          </div>
+
+          <div class="exp-entry">
+            <div class="exp-head">
+              <div class="exp-role">Business Intelligence Researcher · <span class="org">Big Data Analytics Group</span><span class="current-tag">Current</span></div>
+              <div class="exp-dates">Feb 2023 – Present</div>
+            </div>
+            <div class="exp-meta">Consulting</div>
+            <ul class="bullets">
+              <li>Researched emerging trends in big data and BI, developing case-based frameworks and actionable recommendations that drive strategic advantage for decision-makers.</li>
+            </ul>
+          </div>
+
+          <div class="exp-entry">
+            <div class="exp-head">
+              <div class="exp-role">Business Analytics Specialist · <span class="org">Sarshenas Consulting Services</span></div>
+              <div class="exp-dates">Aug 2021 – Jul 2023</div>
+            </div>
+            <div class="exp-meta">Consulting</div>
+            <ul class="bullets">
+              <li>Analyzed business processes and performance metrics to identify improvement areas and developed data-driven recommendations enhancing operational efficiency.</li>
+              <li>Designed dashboards and KPI reports, contributing to scalable analytical frameworks for process mapping, benchmarking, and performance evaluation.</li>
+            </ul>
+          </div>
+
+          <div class="exp-entry">
+            <div class="exp-head">
+              <div class="exp-role">Data Analytics Trainee · <span class="org">Hamrah Academy</span></div>
+              <div class="exp-dates">Aug 2020 – Jul 2021</div>
+            </div>
+            <div class="exp-meta">Telecom Industry</div>
+            <ul class="bullets">
+              <li>Analyzed large CRM datasets to uncover customer behavior, churn, and engagement patterns, supporting automated KPI dashboards for acquisition and retention.</li>
+            </ul>
+          </div>
+
+          <div class="exp-entry">
+            <div class="exp-head">
+              <div class="exp-role">Data Analytics Trainee · <span class="org">Rose Academy (Consultancy &amp; Education)</span></div>
+              <div class="exp-dates">Mar 2019 – Jul 2020</div>
+            </div>
+            <div class="exp-meta">Retail Consulting</div>
+            <ul class="bullets">
+              <li>Analyzed retail datasets to identify sales trends and inventory opportunities; cleaned, transformed, and visualized data using SQL, Power BI, and Excel.</li>
+            </ul>
+          </div>
+
+          <div class="exp-entry">
+            <div class="exp-head">
+              <div class="exp-role">Project Coordinator, Business Games League · <span class="org">University of Tehran</span></div>
+              <div class="exp-dates">Nov 2019 – May 2020</div>
+            </div>
+            <div class="exp-meta">Volunteer</div>
+            <ul class="bullets">
+              <li>Coordinated a university-wide business strategy competition with industry partners, managing logistics, team registration, budgets, and sponsor communication.</li>
+            </ul>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

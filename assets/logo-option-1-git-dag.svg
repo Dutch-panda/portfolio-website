@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none">
+  <defs>
+    <!-- Single warm orange pinpoint glow at the top apex -->
+    <radialGradient id="apexGlow" cx="50%" cy="12%" r="22%">
+      <stop offset="0%" stop-color="#FFB067" stop-opacity="1" />
+      <stop offset="35%" stop-color="#FF7B29" stop-opacity="0.68" />
+      <stop offset="100%" stop-color="#FF7B29" stop-opacity="0" />
+    </radialGradient>
+    <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="1.1" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Outer Geometric Wireframe Pyramid (Fine Monochrome Silver-White Hairlines) -->
+  <polygon
+    points="32,8 55,45 32,58 9,45"
+    stroke="#E5E7EB"
+    stroke-opacity="0.38"
+    stroke-width="1"
+    fill="rgba(255,255,255,0.01)"
+  />
+  <!-- Subtle Rear Isometric Depth Edges -->
+  <line x1="9" y1="45" x2="55" y2="45" stroke="#E5E7EB" stroke-opacity="0.16" stroke-width="0.85" />
+  <line x1="32" y1="8" x2="19" y2="51.5" stroke="#E5E7EB" stroke-opacity="0.13" stroke-width="0.75" />
+  <line x1="32" y1="8" x2="45" y2="51.5" stroke="#E5E7EB" stroke-opacity="0.13" stroke-width="0.75" />
+
+  <!-- Inner Git-Merge / DAG Convergent Graph (No Letters — Pure Branching & Merging into Apex) -->
+  <g filter="url(#softGlow)">
+    <!-- Central Primary Trunk Rising from Base to Glowing Apex -->
+    <path d="M 32 49 L 32 10" stroke="#F4F4F6" stroke-width="1.55" stroke-linecap="round" />
+
+    <!-- Left Forked Branch Merging Upward into Central Trunk (Git S-Curve Merge) -->
+    <path
+      d="M 21 42 C 21 34, 32 33, 32 25"
+      stroke="#F4F4F6"
+      stroke-width="1.45"
+      stroke-linecap="round"
+    />
+
+    <!-- Right Forked Branch Merging Upward into Central Trunk (Higher Merge Node) -->
+    <path
+      d="M 43 38 C 43 29.5, 32 28.5, 32 19"
+      stroke="#F4F4F6"
+      stroke-width="1.45"
+      stroke-linecap="round"
+    />
+
+    <!-- Secondary Lower-Left Sub-Branch Forking Off Left Branch -->
+    <path
+      d="M 21 37 C 21 32, 16.5 31, 16.5 27"
+      stroke="#E5E7EB"
+      stroke-opacity="0.65"
+      stroke-width="1.15"
+      stroke-linecap="round"
+    />
+
+    <!-- Monochrome Commit & Merge Nodes -->
+    <!-- Base Origin Commit Node -->
+    <circle cx="32" cy="49" r="2.1" fill="#0B0B0D" stroke="#F4F4F6" stroke-width="1.35" />
+    <!-- Left Branch Origin Node -->
+    <circle cx="21" cy="42" r="2.1" fill="#0B0B0D" stroke="#F4F4F6" stroke-width="1.35" />
+    <!-- Sub-branch Node -->
+    <circle cx="16.5" cy="27" r="1.6" fill="#0B0B0D" stroke="#E5E7EB" stroke-opacity="0.8" stroke-width="1.2" />
+    <!-- Right Branch Origin Node -->
+    <circle cx="43" cy="38" r="2.1" fill="#0B0B0D" stroke="#F4F4F6" stroke-width="1.35" />
+    <!-- Central Merge Node 1 -->
+    <circle cx="32" cy="25" r="1.9" fill="#0B0B0D" stroke="#F4F4F6" stroke-width="1.35" />
+    <!-- Central Merge Node 2 -->
+    <circle cx="32" cy="19" r="1.9" fill="#0B0B0D" stroke="#F4F4F6" stroke-width="1.35" />
+  </g>
+
+  <!-- Single Warm Orange Pinpoint Glow at the Top Apex (Synthesis / Resolved Outcome) -->
+  <circle cx="32" cy="8" r="10.5" fill="url(#apexGlow)" />
+  <circle cx="32" cy="8" r="1.75" fill="#FFF7ED" />
+</svg>

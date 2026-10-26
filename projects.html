@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects &amp; Case Archive — Ehsan Negahdar</title>
+    <meta
+      name="description"
+      content="Problem -> Solution Archive of GitHub repositories, Sample Analytics Projects, and Systems Architecture by Ehsan Negahdar."
+    />
+    <link rel="icon" type="image/svg+xml" href="./assets/logo-git-e.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/main.css" />
+  </head>
+  <body data-page="projects">
+    <!-- Full-Viewport Architectural Gray Vertical Stripes & Blueprint Grid -->
+    <div class="ambient-grid" aria-hidden="true">
+      <div class="crosshair-mark ch-top" aria-hidden="true"></div>
+      <div class="crosshair-mark ch-left" aria-hidden="true"></div>
+      <div class="crosshair-mark ch-right" aria-hidden="true"></div>
+      <div class="crosshair-mark ch-bottom" aria-hidden="true"></div>
+    </div>
+
+    <!-- PERSISTENT MINIMAL TOP HEADER -->
+    <header class="site-header">
+      <div class="header-inner">
+        <a
+          href="./index.html"
+          class="brand-logo-btn"
+          aria-label="Home — Designer & Problem-Solver"
+          title="Back to Home"
+        >
+          <img
+            src="./assets/logo-git-e.svg"
+            alt="Monochrome Git-Branch E Logo"
+            class="brand-logo-svg"
+          />
+        </a>
+
+        <nav class="header-nav" aria-label="Primary Navigation">
+          <a href="./projects.html" class="nav-link active">Projects</a>
+          <a href="./cv.html" class="nav-link">CV</a>
+          <a href="./blog.html" class="nav-link">Blog</a>
+          <a
+            href="https://github.com/Dutch-panda"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="nav-link"
+          >
+            GitHub ↗
+          </a>
+          <a
+            href="https://www.linkedin.com/in/ehsan-negahdar/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="nav-link"
+          >
+            LinkedIn ↗
+          </a>
+          <a href="./index.html#stage-hero" class="availability-pill" title="Send a direct note">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span>Available</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- DEDICATED PROJECTS PAGE CONTAINER -->
+    <main class="subpage-main">
+      <div class="subpage-ActionBar">
+        <a href="./index.html" class="stage-step-btn">← Back to Overview</a>
+        <div class="archive-filters" role="tablist" aria-label="Filter projects by origin">
+          <button type="button" class="filter-chip active" data-page-filter="all">
+            All Projects
+          </button>
+          <button type="button" class="filter-chip" data-page-filter="github">GitHub</button>
+          <button type="button" class="filter-chip" data-page-filter="sample">
+            Sample Projects
+          </button>
+          <button type="button" class="filter-chip" data-page-filter="systems">Systems</button>
+        </div>
+      </div>
+
+      <section class="stage-box subpage-header-box">
+        <span class="box-corner-bl" aria-hidden="true"></span>
+        <span class="box-corner-br" aria-hidden="true"></span>
+        <div class="hero-kicker" style="margin-bottom: 10px;">
+          <span>PROBLEM ──▶ SOLUTION ARCHIVE</span>
+          <span class="slash-accent">//</span>
+          <span>GITHUB &amp; SAMPLE PROJECTS</span>
+        </div>
+        <h1 class="subpage-h1">Selected Systems, Data &amp; Agentic AI Work</h1>
+        <p class="subpage-lead">
+          Every project below is framed around the underlying bottleneck it untangles—spanning
+          open-source agentic AI tools on
+          <a
+            href="https://github.com/Dutch-panda"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-accent-link"
+            >github.com/Dutch-panda ↗</a
+          >, fintech &amp; CRM analytics architectures, and operational process optimization.
+        </p>
+      </section>
+
+      <div id="projects-full-grid" class="projects-full-grid">
+        <!-- Populated dynamically from scripts/data.js -->
+      </div>
+    </main>
+
+    <!-- PERSISTENT BOTTOM STATUS TICKER -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <span class="footer-label">Latest Updates — Oct 2026</span>
+          <span class="footer-sep">|</span>
+          <button
+            type="button"
+            id="footer-dispatch-btn"
+            class="footer-dispatch-btn"
+            title="Click to cycle recent dispatches"
+          ></button>
+        </div>
+
+        <div class="footer-right">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span>System status: <strong class="status-clean">Clean</strong></span>
+          <button type="button" class="footer-contact-trigger" data-copy-email>
+            Direct contact
+          </button>
+        </div>
+      </div>
+    </footer>
+
+    <div id="toast-banner" class="toast-banner" role="status" aria-live="polite"></div>
+
+    <script src="./scripts/data.js"></script>
+    <script src="./scripts/app.js"></script>
+  </body>
+</html>
