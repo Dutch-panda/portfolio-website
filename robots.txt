@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dutch-panda.github.io/sitemap.xml

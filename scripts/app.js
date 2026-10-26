@@ -52,183 +52,131 @@
   }
 
   /* --------------------------------------------------------------------------
-   * 3. Smooth 120fps Lerp Scroll Engine (All Pages on Desktop)
+   * 3. Hardware-Accelerated Stage Transforms (Home Page Only)
    * -------------------------------------------------------------------------- */
   const stages = Array.from(document.querySelectorAll('.stage-section'));
   const stageBoxes = stages.map((s) => s.querySelector('.stage-box'));
   const railDots = Array.from(document.querySelectorAll('.rail-dot'));
 
-  let targetScrollY = window.scrollY;
-  let currentScrollY = window.scrollY;
-  let isSmoothLoopRunning = false;
-  const LERP_FACTOR = 0.11;
+  if (currentPage === 'home' && stages.length > 0) {
+    const isReducedMotion = () =>
+      window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  function getMaxScroll() {
-    return Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
-  }
+    function getMaxScroll() {
+      return Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+    }
 
-  function updateStackTransforms() {
-    if (!stages.length) return;
-    const vh = window.innerHeight;
-    let activeIdx = 0;
+    function updateStackTransforms() {
+      if (!stages.length) return;
+      const vh = window.innerHeight;
+      const reduced = isReducedMotion();
+      let activeIdx = 0;
 
-    for (let idx = 0; idx < stages.length; idx++) {
-      const section = stages[idx];
-      const nextSection = stages[idx + 1];
-      const box = stageBoxes[idx];
-      if (!box) continue;
+      for (let idx = 0; idx < stages.length; idx++) {
+        const section = stages[idx];
+        const nextSection = stages[idx + 1];
+        const box = stageBoxes[idx];
+        if (!box) continue;
 
-      const rect = section.getBoundingClientRect();
-      if (rect.top <= vh * 0.5) {
-        activeIdx = idx;
-      }
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= vh * 0.5) {
+          activeIdx = idx;
+        }
 
-      if (nextSection) {
-        const nextRect = nextSection.getBoundingClientRect();
-        const stickyTop = 96;
-        const overlapStart = vh - 44;
-        const overlapDistance = Math.max(1, overlapStart - stickyTop);
+        if (reduced) {
+          box.style.transform = 'none';
+          box.style.opacity = '1';
+          continue;
+        }
 
-        const rawProgress = (overlapStart - nextRect.top) / overlapDistance;
-        const progress = Math.max(0, Math.min(1, rawProgress));
+        if (nextSection && window.innerWidth > 960) {
+          const nextRect = nextSection.getBoundingClientRect();
+          const stickyTop = 96;
+          const overlapStart = vh - 44;
+          const overlapDistance = Math.max(1, overlapStart - stickyTop);
 
-        if (progress > 0.001) {
-          const eased = progress * progress * (3 - 2 * progress);
-          const scale = 1 - eased * 0.045;
-          const opacity = 1 - eased * 0.72;
-          const translateY = -eased * 22;
-          box.style.transform = `translate3d(0, ${translateY.toFixed(2)}px, 0) scale(${scale.toFixed(4)})`;
-          box.style.opacity = opacity.toFixed(3);
+          const rawProgress = (overlapStart - nextRect.top) / overlapDistance;
+          const progress = Math.max(0, Math.min(1, rawProgress));
+
+          if (progress > 0.001) {
+            const eased = progress * progress * (3 - 2 * progress);
+            const scale = 1 - eased * 0.045;
+            const opacity = 1 - eased * 0.72;
+            const translateY = -eased * 22;
+            box.style.transform = `translate3d(0, ${translateY.toFixed(2)}px, 0) scale(${scale.toFixed(4)})`;
+            box.style.opacity = opacity.toFixed(3);
+          } else {
+            box.style.transform = 'translate3d(0, 0, 0) scale(1)';
+            box.style.opacity = '1';
+          }
         } else {
           box.style.transform = 'translate3d(0, 0, 0) scale(1)';
           box.style.opacity = '1';
         }
-      } else {
-        box.style.transform = 'translate3d(0, 0, 0) scale(1)';
-        box.style.opacity = '1';
       }
+
+      railDots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === activeIdx);
+      });
+    }
+
+    let isTicking = false;
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (!isTicking) {
+          window.requestAnimationFrame(() => {
+            updateStackTransforms();
+            isTicking = false;
+          });
+          isTicking = true;
+        }
+      },
+      { passive: true }
+    );
+
+    window.addEventListener(
+      'resize',
+      () => {
+        updateStackTransforms();
+      },
+      { passive: true }
+    );
+
+    function getStageScrollOffset(targetIndex) {
+      if (!stages.length) return 0;
+      const clamped = Math.max(0, Math.min(stages.length - 1, targetIndex));
+      if (clamped === 0) return 0;
+
+      let offset = 0;
+      for (let i = 0; i < clamped; i++) {
+        offset += stages[i].offsetHeight + window.innerHeight * 0.16;
+      }
+      return Math.min(getMaxScroll(), offset);
+    }
+
+    function scrollToStage(targetIndex) {
+      const reduced = isReducedMotion();
+      const offset = getStageScrollOffset(targetIndex);
+      window.scrollTo({
+        top: offset,
+        behavior: reduced ? 'auto' : 'smooth',
+      });
     }
 
     railDots.forEach((dot, idx) => {
-      dot.classList.toggle('active', idx === activeIdx);
+      dot.addEventListener('click', () => scrollToStage(idx));
     });
-  }
 
-  function smoothScrollTick() {
-    const diff = targetScrollY - currentScrollY;
-
-    if (Math.abs(diff) > 0.35) {
-      currentScrollY += diff * LERP_FACTOR;
-      window.scrollTo(0, currentScrollY);
-      updateStackTransforms();
-      window.requestAnimationFrame(smoothScrollTick);
-    } else {
-      currentScrollY = targetScrollY;
-      window.scrollTo(0, currentScrollY);
-      updateStackTransforms();
-      isSmoothLoopRunning = false;
-    }
-  }
-
-  function startSmoothLoop() {
-    if (!isSmoothLoopRunning) {
-      isSmoothLoopRunning = true;
-      window.requestAnimationFrame(smoothScrollTick);
-    }
-  }
-
-  window.addEventListener(
-    'wheel',
-    (e) => {
-      if (window.innerWidth <= 960) return;
-      e.preventDefault();
-      const delta = e.deltaMode === 1 ? e.deltaY * 32 : e.deltaY;
-      targetScrollY = Math.max(0, Math.min(getMaxScroll(), targetScrollY + delta));
-      startSmoothLoop();
-    },
-    { passive: false }
-  );
-
-  window.addEventListener(
-    'scroll',
-    () => {
-      if (!isSmoothLoopRunning) {
-        currentScrollY = window.scrollY;
-        targetScrollY = window.scrollY;
-        updateStackTransforms();
-      }
-    },
-    { passive: true }
-  );
-
-  function getStageScrollOffset(targetIndex) {
-    if (!stages.length) return 0;
-    const clamped = Math.max(0, Math.min(stages.length - 1, targetIndex));
-    if (clamped === 0) return 0;
-
-    let offset = 0;
-    for (let i = 0; i < clamped; i++) {
-      offset += stages[i].offsetHeight + window.innerHeight * 0.16;
-    }
-    return Math.min(getMaxScroll(), offset);
-  }
-
-  function scrollToStage(targetIndex) {
-    targetScrollY = getStageScrollOffset(targetIndex);
-    startSmoothLoop();
-  }
-
-  window.addEventListener('keydown', (e) => {
-    const activeTag = document.activeElement ? document.activeElement.tagName : '';
-    if (activeTag === 'INPUT' || activeTag === 'TEXTAREA') return;
-
-    if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      targetScrollY = Math.max(0, Math.min(getMaxScroll(), targetScrollY + 180));
-      startSmoothLoop();
-    } else if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      targetScrollY = Math.max(0, Math.min(getMaxScroll(), targetScrollY - 180));
-      startSmoothLoop();
-    } else if (e.key === 'PageDown' || e.key === ' ') {
-      e.preventDefault();
-      targetScrollY = Math.max(
-        0,
-        Math.min(getMaxScroll(), targetScrollY + window.innerHeight * 0.85)
-      );
-      startSmoothLoop();
-    } else if (e.key === 'PageUp') {
-      e.preventDefault();
-      targetScrollY = Math.max(
-        0,
-        Math.min(getMaxScroll(), targetScrollY - window.innerHeight * 0.85)
-      );
-      startSmoothLoop();
-    } else if (e.key === 'Home') {
-      e.preventDefault();
-      targetScrollY = 0;
-      startSmoothLoop();
-    } else if (e.key === 'End') {
-      e.preventDefault();
-      targetScrollY = getMaxScroll();
-      startSmoothLoop();
-    }
-  });
-
-  window.addEventListener('resize', updateStackTransforms, { passive: true });
-
-  railDots.forEach((dot, idx) => {
-    dot.addEventListener('click', () => scrollToStage(idx));
-  });
-
-  document.querySelectorAll('[data-goto-stage]').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const target = parseInt(btn.getAttribute('data-goto-stage'), 10);
-      scrollToStage(target);
+    document.querySelectorAll('[data-goto-stage]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const target = parseInt(btn.getAttribute('data-goto-stage'), 10);
+        scrollToStage(target);
+      });
     });
-  });
 
-  updateStackTransforms();
+    updateStackTransforms();
+  }
 
   /* --------------------------------------------------------------------------
    * 4. HOME PAGE RENDERERS (Specialties, Preview Archive & Problem Bar)
@@ -284,12 +232,14 @@
           <span class="provenance-tag" data-external-url="${proj.url}">${proj.tagLabel}</span>
         </button>
         <div class="archive-row-drawer">
-          <p class="drawer-desc">${proj.details}</p>
-          <div class="drawer-meta">
-            <div class="drawer-stack">
-              ${proj.stack.map((s) => `<span class="stack-pill">${s}</span>`).join('')}
+          <div class="archive-row-drawer-inner">
+            <p class="drawer-desc">${proj.details}</p>
+            <div class="drawer-meta">
+              <div class="drawer-stack">
+                ${proj.stack.map((s) => `<span class="stack-pill">${s}</span>`).join('')}
+              </div>
+              <span class="drawer-outcome">✓ ${proj.outcome}</span>
             </div>
-            <span class="drawer-outcome">✓ ${proj.outcome}</span>
           </div>
         </div>
       </div>
@@ -310,9 +260,14 @@
           }
         }
         const isExpanded = row.classList.contains('expanded');
-        archiveList.querySelectorAll('.archive-row').forEach((r) => r.classList.remove('expanded'));
+        archiveList.querySelectorAll('.archive-row').forEach((r) => {
+          r.classList.remove('expanded');
+          const btn = r.querySelector('.archive-row-main');
+          if (btn) btn.setAttribute('aria-expanded', 'false');
+        });
         if (!isExpanded) {
           row.classList.add('expanded');
+          mainBtn.setAttribute('aria-expanded', 'true');
         }
       });
     });
