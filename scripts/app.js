@@ -286,19 +286,40 @@
       .map(
         (proj, idx) => `
       <div class="archive-row ${idx === 0 ? 'expanded' : ''}" data-project-id="${proj.id}">
-        <button type="button" class="archive-row-main" aria-expanded="${idx === 0 ? 'true' : 'false'}">
-          <div class="problem-cell">
-            <span class="badge-problem">Problem</span>
-            <span class="problem-text">${proj.problem}</span>
-          </div>
-          <span class="arrow-divider">──▶</span>
-          <div class="solution-cell">
-            <span class="badge-solution">Solution</span>
-            <span class="solution-text">${proj.solution}</span>
-          </div>
-          <span class="provenance-tag" data-external-url="${proj.url}">${proj.tagLabel}</span>
-        </button>
-        <div class="archive-row-drawer">
+        <div class="archive-row-header">
+          <button
+            type="button"
+            class="archive-row-toggle"
+            aria-expanded="${idx === 0 ? 'true' : 'false'}"
+            aria-controls="drawer-${proj.id}"
+            id="toggle-${proj.id}"
+          >
+            <div class="problem-cell">
+              <span class="badge-problem">Problem</span>
+              <span class="problem-text">${proj.problem}</span>
+            </div>
+            <span class="arrow-divider" aria-hidden="true">──▶</span>
+            <div class="solution-cell">
+              <span class="badge-solution">Solution</span>
+              <span class="solution-text">${proj.solution}</span>
+            </div>
+            <span class="accordion-chevron" aria-hidden="true">▾</span>
+          </button>
+          <a
+            href="${proj.url}"
+            class="provenance-tag"
+            ${proj.url.startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : ''}
+            aria-label="View source or evidence for ${proj.solution}"
+          >
+            ${proj.tagLabel}
+          </a>
+        </div>
+        <div
+          class="archive-row-drawer"
+          id="drawer-${proj.id}"
+          role="region"
+          aria-labelledby="toggle-${proj.id}"
+        >
           <div class="archive-row-drawer-inner">
             <p class="drawer-desc">${proj.details}</p>
             <div class="drawer-meta">
@@ -315,28 +336,22 @@
       .join('');
 
     archiveList.querySelectorAll('.archive-row').forEach((row) => {
-      const mainBtn = row.querySelector('.archive-row-main');
-      const tag = row.querySelector('.provenance-tag');
+      const toggleBtn = row.querySelector('.archive-row-toggle');
 
-      mainBtn.addEventListener('click', (e) => {
-        if (tag && tag.contains(e.target)) {
-          const url = tag.getAttribute('data-external-url');
-          if (url && url.startsWith('http')) {
-            window.open(url, '_blank', 'noopener');
-            return;
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', () => {
+          const isExpanded = row.classList.contains('expanded');
+          archiveList.querySelectorAll('.archive-row').forEach((r) => {
+            r.classList.remove('expanded');
+            const btn = r.querySelector('.archive-row-toggle');
+            if (btn) btn.setAttribute('aria-expanded', 'false');
+          });
+          if (!isExpanded) {
+            row.classList.add('expanded');
+            toggleBtn.setAttribute('aria-expanded', 'true');
           }
-        }
-        const isExpanded = row.classList.contains('expanded');
-        archiveList.querySelectorAll('.archive-row').forEach((r) => {
-          r.classList.remove('expanded');
-          const btn = r.querySelector('.archive-row-main');
-          if (btn) btn.setAttribute('aria-expanded', 'false');
         });
-        if (!isExpanded) {
-          row.classList.add('expanded');
-          mainBtn.setAttribute('aria-expanded', 'true');
-        }
-      });
+      }
     });
   }
 
@@ -502,8 +517,7 @@
           </div>
           <a
             href="${proj.url}"
-            target="_blank"
-            rel="noopener noreferrer"
+            ${proj.url.startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : ''}
             class="provenance-tag"
           >
             ${proj.tagLabel}
@@ -655,12 +669,12 @@
             .join('')}
         </aside>
 
-        <div class="cv-main">
+        <div class="cv-main" id="cv-experience">
           <h2 class="cv-section-h2">Experience</h2>
           ${cv.experience
             .map(
               (exp) => `
-            <div class="cv-exp-entry">
+            <div class="cv-exp-entry" id="${exp.id || 'exp-' + exp.org.toLowerCase().replace(/[^a-z0-9]+/g, '-')}">
               <div class="cv-exp-head">
                 <div class="cv-exp-role">
                   ${exp.role} · <span class="org">${exp.org}</span>

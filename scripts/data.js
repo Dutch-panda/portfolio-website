@@ -64,18 +64,18 @@ window.PORTFOLIO_DATA = {
     // PINNED GITHUB REPOSITORIES (Synced with https://github.com/Dutch-panda)
     // =========================================================================
     {
-      id: "agent-platform-v2",
+      id: "buildrelay",
       category: "github",
       featured: true,
       problem: "Fragmented multi-step engineering requests & unverified task handoffs",
-      solution: "AP-V2 · Multi-Agent Engineering & Knowledge Vault Platform",
+      solution: "BuildRelay · Multi-Agent Engineering & Knowledge Vault Platform",
       tagLabel: "GitHub ↗",
       tagType: "github",
       year: "2026",
-      role: "System Architect & Creator",
-      url: "https://github.com/Dutch-panda/AgentPlatform",
+      role: "System Architect & Workflow Designer",
+      url: "https://github.com/Dutch-panda/BuildRelay",
       details:
-        "Built a Python CLI powered by Pydantic AI that coordinates a four-role autonomous engineering team (Natasha coordinator, Odin researcher, Taghi architect, and Meti implementer). Turns raw prompts into structured briefs, research findings, phased specifications, and Docker-validated implementations linked inside an Obsidian knowledge vault.",
+        "Architected the multi-agent routing engine, typed Pydantic task briefs, and Docker execution sandboxing gates for BuildRelay—a Python CLI platform that coordinates a four-role autonomous engineering team (Natasha coordinator, Odin researcher, Taghi architect, and Meti implementer) linked directly into an Obsidian knowledge vault.",
       methodology: [
         "Designed a 4-stage sequential routing graph: Coordinator (Natasha) → Researcher (Odin) → Architect (Taghi) → Implementer (Meti).",
         "Enforced strict Docker execution sandboxing and phase-by-phase validation gates so unvalidated phases automatically downgrade reported success.",
@@ -115,11 +115,11 @@ window.PORTFOLIO_DATA = {
       featured: true,
       problem: "Opaque conversion drop-offs & payment process friction at scale",
       solution: "Fintech Transaction & Cohort Intelligence System (ZarinPal)",
-      tagLabel: "Case Study",
+      tagLabel: "CV Record ↗",
       tagType: "sample",
       year: "2025",
       role: "Business Data Analyst · ZarinPal",
-      url: "./cv.html",
+      url: "./cv.html#exp-zarinpal",
       details:
         "Architected an end-to-end transaction and user-behavior analytics framework combining SQL, Python, and Power BI (DAX) to track conversion funnels, retention cohorts, and payment risk signals across digital payment products.",
       methodology: [
@@ -136,11 +136,11 @@ window.PORTFOLIO_DATA = {
       featured: true,
       problem: "Disconnected operational metrics & unmapped cross-team process friction",
       solution: "Scalable Process Mapping & KPI Benchmarking Framework",
-      tagLabel: "Systems",
+      tagLabel: "CV Record ↗",
       tagType: "systems",
       year: "2023",
       role: "Business Analytics Specialist · Sarshenas Consulting",
-      url: "./cv.html",
+      url: "./cv.html#exp-sarshenas",
       details:
         "Analyzed end-to-end business processes and operational performance metrics for consulting clients, designing scalable analytical frameworks and KPI dashboards for process mapping, benchmarking, and continuous performance evaluation.",
       methodology: [
@@ -157,11 +157,11 @@ window.PORTFOLIO_DATA = {
       featured: true,
       problem: "High customer churn & undifferentiated engagement in large telecom CRM datasets",
       solution: "Automated CRM Segmentation & Churn Diagnostic Model",
-      tagLabel: "Case Study",
+      tagLabel: "CV Record ↗",
       tagType: "sample",
       year: "2021",
       role: "Data Analytics · Hamrah Academy",
-      url: "./cv.html",
+      url: "./cv.html#exp-hamrah",
       details:
         "Cleaned, transformed, and modeled large-scale telecom CRM datasets to uncover customer behavior, churn drivers, and engagement patterns—supporting automated KPI dashboards for acquisition and retention.",
       methodology: [
@@ -178,11 +178,11 @@ window.PORTFOLIO_DATA = {
       featured: false,
       problem: "Launching a new specialty hospitality concept inside an existing studio",
       solution: "End-to-End Requirement, Market & Operational Blueprint (Pulse Pilates)",
-      tagLabel: "Systems",
+      tagLabel: "CV Record ↗",
       tagType: "systems",
       year: "2026",
       role: "Business Analyst · Pulse Pilates",
-      url: "./cv.html",
+      url: "./cv.html#exp-pulse",
       details:
         "Conducted comprehensive requirement engineering, local market analysis, operational workflow design, and menu development for launching an integrated coffee shop within the Pilates studio.",
       methodology: [
@@ -224,7 +224,7 @@ window.PORTFOLIO_DATA = {
   updates: [
     {
       date: "Oct 2026",
-      title: "Published AP-V2 (Multi-Agent Engineering Platform) & Periodic Table Companion on GitHub",
+      title: "Published BuildRelay (Multi-Agent Engineering Platform) & Periodic Table Companion on GitHub",
       tag: "GitHub",
     },
     {
@@ -302,6 +302,7 @@ window.PORTFOLIO_DATA = {
     ],
     experience: [
       {
+        id: "exp-pulse",
         role: "Business Analyst",
         org: "Pulse Pilates",
         current: true,
@@ -312,6 +313,7 @@ window.PORTFOLIO_DATA = {
         ],
       },
       {
+        id: "exp-uva-ta",
         role: "Teaching Assistant, Sustainability Honours Programme",
         org: "University of Amsterdam Business School",
         current: false,
@@ -322,6 +324,7 @@ window.PORTFOLIO_DATA = {
         ],
       },
       {
+        id: "exp-zarinpal",
         role: "Business Data Analyst",
         org: "ZarinPal",
         current: false,
@@ -334,6 +337,7 @@ window.PORTFOLIO_DATA = {
         ],
       },
       {
+        id: "exp-big-data",
         role: "Business Intelligence Researcher",
         org: "Big Data Analytics Group",
         current: true,
@@ -345,6 +349,7 @@ window.PORTFOLIO_DATA = {
         ],
       },
       {
+        id: "exp-sarshenas",
         role: "Business Analytics Specialist",
         org: "Sarshenas Consulting Services",
         current: false,
@@ -357,6 +362,7 @@ window.PORTFOLIO_DATA = {
         ],
       },
       {
+        id: "exp-hamrah",
         role: "Data Analytics Trainee",
         org: "Hamrah Academy",
         current: false,
@@ -368,6 +374,7 @@ window.PORTFOLIO_DATA = {
         ],
       },
       {
+        id: "exp-rose",
         role: "Data Analytics Trainee",
         org: "Rose Academy (Consultancy and Education)",
         current: false,
@@ -379,6 +386,7 @@ window.PORTFOLIO_DATA = {
         ],
       },
       {
+        id: "exp-tehran",
         role: "Project Coordinator, Business Games League",
         org: "University of Tehran (Student Association)",
         current: false,
@@ -400,10 +408,10 @@ window.PORTFOLIO_DATA = {
       category: "Agentic Workflows",
       title: "Why Most Agentic Workflows Fail at the Handoff (And How to Fix the Architecture)",
       excerpt:
-        "Lessons from building AP-V2 with Pydantic AI: why autonomous agents fail at step boundaries without typed task briefs, Docker validation gates, and connected vault memory.",
+        "Lessons from architecting BuildRelay with Pydantic AI: why autonomous agents fail at step boundaries without typed task briefs, Docker validation gates, and connected vault memory.",
       body: [
-        "When teams first prototype an agentic workflow, they usually focus on prompt engineering or model selection. Yet in production environments—whether coordinating engineering tasks in AP-V2, triaging operational tickets, or validating financial data—failures almost always happen at the boundaries between steps.",
-        "In AP-V2 (AgentPlatform), we solved this by separating responsibilities across four explicit roles: a Coordinator (Natasha) that produces a typed task brief and selects the route, a Researcher (Odin) that queries local vault context, an Architect (Taghi) that defines ordered execution phases with explicit validation commands, and an Implementer (Meti) that executes inside a Docker sandbox.",
+        "When teams first prototype an agentic workflow, they usually focus on prompt engineering or model selection. Yet in production environments—whether coordinating engineering tasks in BuildRelay, triaging operational tickets, or validating financial data—failures almost always happen at the boundaries between steps.",
+        "In BuildRelay, we solved this by separating responsibilities across four explicit roles: a Coordinator (Natasha) that produces a typed task brief and selects the route, a Researcher (Odin) that queries local vault context, an Architect (Taghi) that defines ordered execution phases with explicit validation commands, and an Implementer (Meti) that executes inside a Docker sandbox.",
         "Crucially, a reported success is automatically downgraded to failure if any phase remains unvalidated. Combining typed state contracts with deterministic sandbox verification gives you autonomous speed without sacrificing engineering rigor.",
       ],
     },

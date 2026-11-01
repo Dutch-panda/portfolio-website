@@ -975,6 +975,55 @@ body {
   background: rgba(255, 255, 255, 0.02);
 }
 
+.archive-row-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 8px;
+}
+
+.archive-row-toggle {
+  flex: 1;
+  min-width: 0;
+  background: none;
+  border: none;
+  color: inherit;
+  font-family: inherit;
+  text-align: left;
+  padding: 6px 8px;
+  border-radius: 6px;
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr) 36px minmax(260px, 1.15fr) 28px;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  transition: background 180ms ease;
+}
+
+.archive-row-toggle:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.archive-row-toggle:focus-visible {
+  outline: 2px solid var(--accent-orange) !important;
+  outline-offset: 2px;
+}
+
+.accordion-chevron {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-align: center;
+  transition: transform 220ms ease, color 220ms ease;
+  user-select: none;
+}
+
+.archive-row.expanded .accordion-chevron {
+  transform: rotate(180deg);
+  color: var(--accent-orange);
+}
+
 .archive-row-main {
   width: 100%;
   background: none;
@@ -1496,6 +1545,16 @@ body {
   margin-bottom: 22px;
   padding-bottom: 22px;
   border-bottom: 1px solid var(--border-hairline);
+  scroll-margin-top: calc(var(--header-h) + 24px);
+  border-left: 3px solid transparent;
+  transition: background-color 260ms ease, padding 260ms ease, border-color 260ms ease;
+}
+
+.cv-exp-entry:target {
+  background-color: rgba(255, 123, 41, 0.08);
+  border-left-color: var(--accent-orange);
+  padding: 14px 16px;
+  border-radius: 6px;
 }
 
 .cv-exp-entry:last-child {
@@ -1886,6 +1945,31 @@ body {
     padding: 0 0 20px 0;
     border-left: none;
     border-bottom: 1px solid var(--border-hairline);
+  }
+
+  .archive-row-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 12px 6px;
+  }
+
+  .archive-row-toggle {
+    width: 100%;
+    grid-template-columns: 1fr 24px;
+    gap: 8px;
+  }
+
+  .archive-row-toggle .solution-cell {
+    grid-column: 1 / 2;
+  }
+
+  .archive-row-toggle .arrow-divider {
+    display: none;
+  }
+
+  .archive-row-header .provenance-tag {
+    align-self: flex-start;
   }
 
   .archive-row-main {
