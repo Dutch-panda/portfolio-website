@@ -74,6 +74,16 @@ window.PORTFOLIO_DATA = {
       year: "2026",
       role: "System Architect & Workflow Designer",
       url: "https://github.com/Dutch-panda/BuildRelay",
+      scopeHeading: "Multi-Agent Routing & Sandbox Architecture",
+      methodologyHeading: "Execution Pipeline & Validation Gates",
+      pipeline: [
+        "Coordinator (Natasha)",
+        "Researcher (Odin)",
+        "Architect (Taghi)",
+        "Implementer (Meti)",
+        "Docker Sandbox Gate",
+        "Obsidian Vault Sync",
+      ],
       details:
         "Architected the multi-agent routing engine, typed Pydantic task briefs, and Docker execution sandboxing gates for BuildRelay—a Python CLI platform that coordinates a four-role autonomous engineering team (Natasha coordinator, Odin researcher, Taghi architect, and Meti implementer) linked directly into an Obsidian knowledge vault.",
       methodology: [
@@ -95,6 +105,16 @@ window.PORTFOLIO_DATA = {
       year: "2026",
       role: "Designer & Developer",
       url: "https://github.com/Dutch-panda/periodic-table-practice",
+      scopeHeading: "Offline-First & Scientific UI Architecture",
+      methodologyHeading: "Compilation, Verification & Privacy",
+      pipeline: [
+        "Raw Element Data",
+        "Python Build Pipeline",
+        "Atomic Service Worker",
+        "Card & Grid Views",
+        "Diagnostic Mistake Loop",
+        "Automated CI Suite",
+      ],
       details:
         "Designed and engineered a mobile-friendly, offline-first periodic-table learning companion covering all 118 elements with search/filters, five-question diagnostic quizzes, mistake-retry loops, and local progress persistence—with zero backend, zero tracking, and a standalone single-file offline build.",
       methodology: [
@@ -120,6 +140,15 @@ window.PORTFOLIO_DATA = {
       year: "2025",
       role: "Business Data Analyst · ZarinPal",
       url: "./cv.html#exp-zarinpal",
+      scopeHeading: "Business Context & Conversion Scope",
+      methodologyHeading: "Funnel Modeling & Analytical Architecture",
+      pipeline: [
+        "Multi-Million Transaction Logs",
+        "SQL & Python Preprocessing",
+        "Funnel & Churn Cohorts",
+        "Power BI Executive Models",
+        "Payment Flow Optimizations",
+      ],
       details:
         "Architected an end-to-end transaction and user-behavior analytics framework combining SQL, Python, and Power BI (DAX) to track conversion funnels, retention cohorts, and payment risk signals across digital payment products.",
       methodology: [
@@ -141,6 +170,14 @@ window.PORTFOLIO_DATA = {
       year: "2023",
       role: "Business Analytics Specialist · Sarshenas Consulting",
       url: "./cv.html#exp-sarshenas",
+      scopeHeading: "Operational Context & Benchmark Scope",
+      methodologyHeading: "Diagnostic Framework & Delivery",
+      pipeline: [
+        "Client Workflow Audit",
+        "Bottleneck Diagnostics",
+        "KPI Telemetry Architecture",
+        "Executive Process Roadmap",
+      ],
       details:
         "Analyzed end-to-end business processes and operational performance metrics for consulting clients, designing scalable analytical frameworks and KPI dashboards for process mapping, benchmarking, and continuous performance evaluation.",
       methodology: [
@@ -162,6 +199,14 @@ window.PORTFOLIO_DATA = {
       year: "2021",
       role: "Data Analytics · Hamrah Academy",
       url: "./cv.html#exp-hamrah",
+      scopeHeading: "CRM Complexity & Retention Scope",
+      methodologyHeading: "Data Modeling & Automated Telemetry",
+      pipeline: [
+        "Telecom CRM Datasets",
+        "ETL & Data Cleaning",
+        "Behavioral Cohort Clustering",
+        "Automated Reporting Dashboards",
+      ],
       details:
         "Cleaned, transformed, and modeled large-scale telecom CRM datasets to uncover customer behavior, churn drivers, and engagement patterns—supporting automated KPI dashboards for acquisition and retention.",
       methodology: [
@@ -183,6 +228,14 @@ window.PORTFOLIO_DATA = {
       year: "2026",
       role: "Business Analyst · Pulse Pilates",
       url: "./cv.html#exp-pulse",
+      scopeHeading: "Commercial Context & Launch Scope",
+      methodologyHeading: "Requirement Engineering & Workflow Design",
+      pipeline: [
+        "Local Market Diagnostics",
+        "Studio Customer Flow",
+        "Operational Workflow Spec",
+        "Menu & Service Blueprint",
+      ],
       details:
         "Conducted comprehensive requirement engineering, local market analysis, operational workflow design, and menu development for launching an integrated coffee shop within the Pilates studio.",
       methodology: [
@@ -404,7 +457,7 @@ window.PORTFOLIO_DATA = {
     {
       id: "agentic-handoffs",
       date: "Oct 18, 2026",
-      readTime: "5 min read",
+      readTime: "Field Note · 2 min read",
       category: "Agentic Workflows",
       title: "Why Most Agentic Workflows Fail at the Handoff (And How to Fix the Architecture)",
       excerpt:
@@ -412,13 +465,13 @@ window.PORTFOLIO_DATA = {
       body: [
         "When teams first prototype an agentic workflow, they usually focus on prompt engineering or model selection. Yet in production environments—whether coordinating engineering tasks in BuildRelay, triaging operational tickets, or validating financial data—failures almost always happen at the boundaries between steps.",
         "In BuildRelay, we solved this by separating responsibilities across four explicit roles: a Coordinator (Natasha) that produces a typed task brief and selects the route, a Researcher (Odin) that queries local vault context, an Architect (Taghi) that defines ordered execution phases with explicit validation commands, and an Implementer (Meti) that executes inside a Docker sandbox.",
-        "Crucially, a reported success is automatically downgraded to failure if any phase remains unvalidated. Combining typed state contracts with deterministic sandbox verification gives you autonomous speed without sacrificing engineering rigor.",
+        "Crucially, a reported success is automatically downgraded to failure if any phase remains unvalidated. The engineering trade-off is deliberate: typed Pydantic contracts and Docker sandboxing introduce startup latency and require upfront schema design, but they systematically eliminate silent state corruption, unverified tool claims, and non-reproducible outcomes.",
       ],
     },
     {
       id: "diagnosing-bottlenecks",
       date: "Oct 04, 2026",
-      readTime: "4 min read",
+      readTime: "Field Note · 1 min read",
       category: "Process & Strategy",
       title: "Untangling Complexity: A Blueprint for Diagnosing Operational Bottlenecks",
       excerpt:
@@ -431,7 +484,7 @@ window.PORTFOLIO_DATA = {
     {
       id: "messy-data-to-conviction",
       date: "Sep 19, 2026",
-      readTime: "6 min read",
+      readTime: "Field Note · 1 min read",
       category: "Data & Decisions",
       title: "From Messy CRM & Transaction Logs to Executive Conviction",
       excerpt:

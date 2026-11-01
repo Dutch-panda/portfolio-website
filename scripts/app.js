@@ -322,6 +322,25 @@
         >
           <div class="archive-row-drawer-inner">
             <p class="drawer-desc">${proj.details}</p>
+            ${
+              proj.pipeline && proj.pipeline.length
+                ? `
+            <div class="project-pipeline-wrap home-pipeline">
+              <div class="project-pipeline-label">EXECUTION PIPELINE //</div>
+              <div class="project-pipeline-strip">
+                ${proj.pipeline
+                  .map(
+                    (step, sIdx) => `
+                  <span class="pipeline-step"><span class="step-num">0${sIdx + 1}</span> ${step}</span>
+                  ${sIdx < proj.pipeline.length - 1 ? '<span class="pipeline-arrow" aria-hidden="true">→</span>' : ''}
+                `
+                  )
+                  .join('')}
+              </div>
+            </div>
+            `
+                : ''
+            }
             <div class="drawer-meta">
               <div class="drawer-stack">
                 ${proj.stack.map((s) => `<span class="stack-pill">${s}</span>`).join('')}
@@ -538,16 +557,36 @@
 
         <div class="project-case-body">
           <div>
-            <div class="project-subhead">Architecture &amp; Scope</div>
+            <div class="project-subhead">${proj.scopeHeading || 'Architecture & Scope'}</div>
             <p class="project-OverviewText">${proj.details}</p>
           </div>
           <div>
-            <div class="project-subhead">How It Was Untangled</div>
+            <div class="project-subhead">${proj.methodologyHeading || 'How It Was Untangled'}</div>
             <ul class="project-methodology-list">
               ${(proj.methodology || []).map((m) => `<li>${m}</li>`).join('')}
             </ul>
           </div>
         </div>
+
+        ${
+          proj.pipeline && proj.pipeline.length
+            ? `
+        <div class="project-pipeline-wrap">
+          <div class="project-pipeline-label">WORKFLOW PIPELINE //</div>
+          <div class="project-pipeline-strip">
+            ${proj.pipeline
+              .map(
+                (step, sIdx) => `
+              <span class="pipeline-step"><span class="step-num">0${sIdx + 1}</span> ${step}</span>
+              ${sIdx < proj.pipeline.length - 1 ? '<span class="pipeline-arrow" aria-hidden="true">→</span>' : ''}
+            `
+              )
+              .join('')}
+          </div>
+        </div>
+        `
+            : ''
+        }
 
         <div class="project-case-footer">
           <div class="drawer-stack">
@@ -701,22 +740,71 @@
   }
 
   /* --------------------------------------------------------------------------
-   * 7. DEDICATED BLOG PAGE RENDERER (blog.html)
+   * 7. DEDICATED BLOG PAGE RENDERER & PERMALINKS (blog.html)
    * -------------------------------------------------------------------------- */
   const blogFullList = document.getElementById('blog-full-list');
-  if (blogFullList && data.blogPosts) {
-    blogFullList.innerHTML = data.blogPosts
-      .map(
-        (post) => `
-      <article class="stage-box blog-article-box" id="${post.id}">
-        <span class="box-corner-bl" aria-hidden="true"></span>
-        <span class="box-corner-br" aria-hidden="true"></span>
-        <div class="blog-meta">${post.date} · ${post.readTime} · [${post.category}]</div>
-        <h2 class="blog-title">${post.title}</h2>
-        ${(post.body || [post.excerpt]).map((p) => `<p class="blog-body-p">${p}</p>`).join('')}
-      </article>
-    `
-      )
-      .join('');
+
+  function initBlogShareButtons() {
+    const shareBtns = document.querySelectorAll('.blog-share-btn');
+    shareBtns.forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const permalinkId = btn.getAttribute('data-permalink');
+        const shareUrl = `${window.location.origin}${window.location.pathname}#${permalinkId}`;
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(shareUrl);
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<span class="share-icon" aria-hidden="true">✓</span> Copied!';
+            showToast('✓ Direct link copied to clipboard.');
+            setTimeout(() => {
+              btn.innerHTML = originalText;
+            }, 2500);
+          } else {
+            prompt('Direct link to note:', shareUrl);
+          }
+        } catch {
+          prompt('Direct link to note:', shareUrl);
+        }
+      });
+    });
+  }
+
+  if (blogFullList) {
+    // If the list is empty (fallback dynamic rendering), render from data.blogPosts
+    if (!blogFullList.children.length && data.blogPosts) {
+      blogFullList.innerHTML = data.blogPosts
+        .map(
+          (post) => `
+        <article class="stage-box blog-article-box" id="${post.id}">
+          <span class="box-corner-bl" aria-hidden="true"></span>
+          <span class="box-corner-br" aria-hidden="true"></span>
+          <div class="blog-meta-row">
+            <span class="blog-category">${post.category}</span>
+            <span class="blog-meta-sep">·</span>
+            <span class="blog-date">${post.date}</span>
+            <span class="blog-meta-sep">·</span>
+            <span class="read-time-pill">${post.readTime}</span>
+            <div class="blog-meta-actions">
+              <button
+                type="button"
+                class="blog-share-btn"
+                data-permalink="${post.id}"
+                title="Copy permalink to this field note"
+                aria-label="Copy link to ${post.title}"
+              >
+                <span class="share-icon" aria-hidden="true">#</span> Copy Link
+              </button>
+            </div>
+          </div>
+          <h2 class="blog-title">
+            <a href="#${post.id}" class="blog-title-anchor" title="Permalink to this section">${post.title}</a>
+          </h2>
+          ${(post.body || [post.excerpt]).map((p) => `<p class="blog-body-p">${p}</p>`).join('')}
+        </article>
+      `
+        )
+        .join('');
+    }
+    initBlogShareButtons();
   }
 })();
