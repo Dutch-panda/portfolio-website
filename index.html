@@ -3,17 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Designer &amp; Problem-Solver — Systems · Data · Agentic AI</title>
+    <title>Ehsan Negahdar — Business Data Analyst &amp; Systems Architect</title>
     <meta
       name="description"
-      content="Untangling complex systems. Designing autonomous workflows. Portfolio of Ehsan Negahdar — Strategy, Process Optimization, Data Analytics & Agentic AI."
+      content="Untangling complex systems. Designing autonomous workflows. Portfolio of Ehsan Negahdar — Business Data Analyst &amp; Systems Architect: Strategy, Process Optimization, Data Analytics &amp; Agentic AI."
     />
     <meta name="author" content="Ehsan Negahdar" />
     <meta name="theme-color" content="#0b0b0d" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Ehsan Negahdar — Systems, Data &amp; Agentic AI" />
+    <meta property="og:title" content="Ehsan Negahdar — Business Data Analyst &amp; Systems Architect" />
     <meta
       property="og:description"
       content="Untangling complex systems. Designing autonomous workflows. Strategy, Process Optimization, Data Analytics &amp; Agentic AI."
@@ -22,7 +22,7 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Ehsan Negahdar — Systems, Data &amp; Agentic AI" />
+    <meta name="twitter:title" content="Ehsan Negahdar — Business Data Analyst &amp; Systems Architect" />
     <meta
       name="twitter:description"
       content="Untangling complex systems. Designing autonomous workflows. Strategy, Process Optimization, Data Analytics &amp; Agentic AI."
@@ -39,6 +39,9 @@
     <link rel="stylesheet" href="./styles/main.css" />
   </head>
   <body data-page="home">
+    <!-- Accessibility Skip to Main Content Link -->
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
     <!-- Full-Viewport Architectural Gray Vertical Stripes & Blueprint Grid -->
     <div class="ambient-grid" aria-hidden="true">
       <div class="crosshair-mark ch-top" aria-hidden="true"></div>
@@ -55,7 +58,7 @@
         <a
           href="./index.html"
           class="brand-logo-btn"
-          aria-label="Home — Designer & Problem-Solver"
+          aria-label="Home — Ehsan Negahdar"
           title="Home"
         >
           <img
@@ -65,7 +68,20 @@
           />
         </a>
 
-        <nav class="header-nav" aria-label="Primary Navigation">
+        <button
+          type="button"
+          class="mobile-nav-toggle"
+          id="mobile-nav-toggle"
+          aria-expanded="false"
+          aria-controls="site-header-nav"
+          aria-label="Toggle navigation menu"
+        >
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+
+        <nav class="header-nav" id="site-header-nav" aria-label="Primary Navigation">
           <a href="./projects.html" class="nav-link">Projects</a>
           <a href="./cv.html" class="nav-link">CV</a>
           <a href="./blog.html" class="nav-link">Blog</a>
@@ -119,7 +135,7 @@
     <!-- ====================================================================
          DYNAMIC SCROLL-REPLACED STAGE DECK
          ==================================================================== -->
-    <main class="stage-viewport">
+    <main class="stage-viewport" id="main-content">
       <!-- STAGE 01: COMPLETE CENTERED HERO BOX -->
       <section class="stage-section" id="stage-hero" aria-label="Hero">
         <div class="stage-box hero-box">
@@ -127,9 +143,9 @@
           <span class="box-corner-br" aria-hidden="true"></span>
 
           <div class="hero-kicker">
-            <span>DESIGNER &amp; PROBLEM-SOLVER</span>
+            <span class="hero-name-badge">EHSAN NEGAHDAR</span>
             <span class="slash-accent">//</span>
-            <span>SYSTEMS · DATA · AGENTIC AI</span>
+            <span>BUSINESS DATA ANALYST &amp; SYSTEMS ARCHITECT</span>
           </div>
 
           <h1 class="hero-headline">
@@ -144,15 +160,33 @@
 
           <div class="problem-form-wrap">
             <form id="problem-form" class="problem-bar" autocomplete="off">
-              <input
-                type="text"
-                id="problem-input"
-                class="problem-input"
-                placeholder="Have a complex problem? Send a direct note..."
-                aria-label="Have a complex problem? Send a direct note"
-              />
-              <button type="submit" class="problem-send-btn">Send</button>
+              <div class="problem-inputs-group">
+                <div class="problem-field-email">
+                  <input
+                    type="email"
+                    id="problem-email"
+                    name="email"
+                    class="problem-input"
+                    placeholder="Your email address..."
+                    aria-label="Your email address"
+                    required
+                  />
+                </div>
+                <div class="problem-field-note">
+                  <input
+                    type="text"
+                    id="problem-input"
+                    name="message"
+                    class="problem-input"
+                    placeholder="Describe a system, data, or workflow bottleneck..."
+                    aria-label="Describe a system, data, or workflow bottleneck"
+                    required
+                  />
+                </div>
+              </div>
+              <button type="submit" class="problem-send-btn" id="problem-submit-btn">Send Note</button>
             </form>
+            <div id="problem-form-feedback" class="problem-form-feedback" aria-live="polite"></div>
             <div class="hero-quick-meta">
               <span>Amsterdam, NL</span>
               <span>·</span>
@@ -220,12 +254,42 @@
               Problem ──▶ Solution Archive <span>(GitHub &amp; Sample Projects)</span>
             </h2>
             <div class="archive-filters" role="tablist" aria-label="Filter projects by origin">
-              <button type="button" class="filter-chip active" data-filter="all">All</button>
-              <button type="button" class="filter-chip" data-filter="github">GitHub</button>
-              <button type="button" class="filter-chip" data-filter="sample">
+              <button
+                type="button"
+                class="filter-chip active"
+                role="tab"
+                aria-selected="true"
+                data-filter="all"
+              >
+                All
+              </button>
+              <button
+                type="button"
+                class="filter-chip"
+                role="tab"
+                aria-selected="false"
+                data-filter="github"
+              >
+                GitHub
+              </button>
+              <button
+                type="button"
+                class="filter-chip"
+                role="tab"
+                aria-selected="false"
+                data-filter="sample"
+              >
                 Sample Projects
               </button>
-              <button type="button" class="filter-chip" data-filter="systems">Systems</button>
+              <button
+                type="button"
+                class="filter-chip"
+                role="tab"
+                aria-selected="false"
+                data-filter="systems"
+              >
+                Systems
+              </button>
             </div>
           </div>
 

@@ -4,8 +4,8 @@
  */
 window.PORTFOLIO_DATA = {
   meta: {
-    title: "Designer & Problem-Solver — Systems · Data · Agentic AI",
-    kicker: "DESIGNER & PROBLEM-SOLVER // SYSTEMS · DATA · AGENTIC AI",
+    title: "Ehsan Negahdar — Business Data Analyst & Systems Architect",
+    kicker: "EHSAN NEGAHDAR // BUSINESS DATA ANALYST & SYSTEMS ARCHITECT",
     headlineLine1: "Untangling complex systems.",
     headlineLine2: "Designing autonomous workflows.",
     subheadline:

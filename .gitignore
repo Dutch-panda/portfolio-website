@@ -22,3 +22,10 @@ yarn-error.log*
 
 # Local scratch / test files
 scratch/
+
+# Audit and Review Reports
+audit-report.md
+*audit*.md
+*audit*.py
+*evidence*.json
+*-evidence.json

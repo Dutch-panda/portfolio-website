@@ -39,6 +39,9 @@
     <link rel="stylesheet" href="./styles/main.css" />
   </head>
   <body data-page="blog">
+    <!-- Accessibility Skip to Main Content Link -->
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
     <!-- Full-Viewport Architectural Gray Vertical Stripes & Blueprint Grid -->
     <div class="ambient-grid" aria-hidden="true">
       <div class="crosshair-mark ch-top" aria-hidden="true"></div>
@@ -53,7 +56,7 @@
         <a
           href="./index.html"
           class="brand-logo-btn"
-          aria-label="Home — Designer & Problem-Solver"
+          aria-label="Home — Ehsan Negahdar"
           title="Back to Home"
         >
           <img
@@ -63,7 +66,20 @@
           />
         </a>
 
-        <nav class="header-nav" aria-label="Primary Navigation">
+        <button
+          type="button"
+          class="mobile-nav-toggle"
+          id="mobile-nav-toggle"
+          aria-expanded="false"
+          aria-controls="site-header-nav"
+          aria-label="Toggle navigation menu"
+        >
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+
+        <nav class="header-nav" id="site-header-nav" aria-label="Primary Navigation">
           <a href="./projects.html" class="nav-link">Projects</a>
           <a href="./cv.html" class="nav-link">CV</a>
           <a href="./blog.html" class="nav-link active">Blog</a>
@@ -92,7 +108,7 @@
     </header>
 
     <!-- DEDICATED BLOG PAGE CONTAINER -->
-    <main class="subpage-main">
+    <main class="subpage-main" id="main-content">
       <div class="subpage-ActionBar">
         <a href="./index.html" class="stage-step-btn">← Back to Overview</a>
         <span class="section-step-badge">FIELD NOTES &amp; DISPATCHES // OCT 2026</span>
