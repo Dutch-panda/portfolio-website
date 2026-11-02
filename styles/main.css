@@ -529,13 +529,17 @@ body {
 }
 
 .hero-name-badge {
+  font-size: 1.2rem;
   color: #ffffff;
   font-weight: 700;
   letter-spacing: 0.12em;
-  background: rgba(255, 123, 41, 0.16);
-  padding: 4px 10px;
-  border-radius: 6px;
-  border: 1px solid rgba(255, 123, 41, 0.42);
+  background: rgba(255, 123, 41, 0.18);
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 123, 41, 0.45);
+  box-shadow: 0 0 18px rgba(255, 123, 41, 0.2);
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .hero-kicker .slash-accent {
@@ -561,54 +565,11 @@ body {
   line-height: 1.6;
 }
 
-/* Centered Problem Submission Form with VS Code Orange Glow */
+/* Centered Problem Submission Bar with VS Code Orange Glow (Round Pill Shape) */
 .problem-form-wrap {
   width: 100%;
-  max-width: 680px;
+  max-width: 650px;
   margin: 0 auto;
-}
-
-/* Hero Direct Contact Control (Approved Email-Only Action) */
-.hero-contact-wrap {
-  width: 100%;
-  max-width: 540px;
-  margin: 0 auto 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
-}
-
-.hero-email-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  background: var(--accent-orange);
-  color: #0b0b0d;
-  font-family: var(--font-mono);
-  font-size: 0.88rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  padding: 12px 32px;
-  border-radius: 4px;
-  text-decoration: none;
-  border: 1px solid var(--accent-orange);
-  box-shadow: 0 0 20px rgba(255, 107, 0, 0.28);
-  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
-}
-
-.hero-email-btn:hover {
-  background: #ffffff;
-  border-color: #ffffff;
-  box-shadow: 0 0 24px rgba(255, 255, 255, 0.35);
-  transform: translateY(-1px);
-}
-
-.hero-contact-email {
-  color: var(--text-secondary);
-  font-family: var(--font-mono);
-  user-select: all;
 }
 
 .problem-bar {
@@ -617,13 +578,12 @@ body {
   width: 100%;
   background: rgba(11, 11, 13, 0.96);
   border: 1px solid var(--accent-orange-border);
-  border-radius: 12px;
-  padding: 6px 6px 6px 14px;
+  border-radius: 999px;
+  padding: 6px 6px 6px 24px;
   box-shadow:
     0 0 28px rgba(255, 123, 41, 0.18),
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
   transition: box-shadow 220ms ease, border-color 220ms ease, transform 220ms ease;
-  gap: 8px;
 }
 
 .problem-bar:focus-within {
@@ -634,35 +594,15 @@ body {
   transform: translateY(-1px);
 }
 
-.problem-inputs-group {
-  display: flex;
-  align-items: center;
-  flex: 1;
-  min-width: 0;
-  gap: 8px;
-}
-
-.problem-field-email {
-  flex: 0 0 210px;
-  min-width: 0;
-  border-right: 1px solid var(--border-hairline);
-  padding-right: 8px;
-}
-
-.problem-field-note {
-  flex: 1;
-  min-width: 0;
-}
-
 .problem-input {
-  width: 100%;
+  flex: 1;
   background: transparent;
   border: none;
   color: var(--text-primary);
   font-family: var(--font-sans);
-  font-size: 0.9375rem;
+  font-size: 0.975rem;
   outline: none;
-  padding: 6px 0;
+  padding-right: 12px;
 }
 
 .problem-input::placeholder {
@@ -673,8 +613,8 @@ body {
   background: #f4f4f6;
   color: #0b0b0d;
   border: none;
-  border-radius: 8px;
-  padding: 10px 22px;
+  border-radius: 999px;
+  padding: 10px 26px;
   font-family: var(--font-sans);
   font-size: 0.92rem;
   font-weight: 600;
@@ -691,7 +631,7 @@ body {
 .problem-send-btn:hover:not(:disabled) {
   background: #ffffff;
   box-shadow: 0 0 16px rgba(255, 255, 255, 0.35);
-  transform: translateX(1px);
+  transform: scale(1.02);
 }
 
 .problem-send-btn:disabled {
@@ -1531,6 +1471,266 @@ body {
   margin-top: 4px;
 }
 
+/* ==========================================================================
+   CV CAREER & SKILLS ROADMAP COMPONENT (Replaces 4 data squares)
+   ========================================================================== */
+.cv-roadmap-wrap {
+  margin-top: 28px;
+  background: #111318;
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  padding: 22px 24px 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cv-roadmap-wrap::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-orange), var(--accent-green) 70%, rgba(52, 211, 153, 0.2) 100%);
+  opacity: 0.9;
+}
+
+.cv-roadmap-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-hairline);
+  margin-bottom: 20px;
+}
+
+.roadmap-header-left {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.roadmap-tag {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--accent-green);
+  text-transform: uppercase;
+}
+
+.roadmap-desc {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+}
+
+.roadmap-legend {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.roadmap-legend .legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.legend-dot.completed {
+  background: var(--text-secondary);
+}
+
+.legend-dot.active {
+  background: var(--accent-green);
+  box-shadow: 0 0 8px var(--accent-green);
+}
+
+/* Roadmap Grid & Progression */
+.cv-roadmap-track {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  position: relative;
+}
+
+.roadmap-card {
+  background: rgba(19, 21, 27, 0.88);
+  border: 1px solid var(--border-hairline);
+  border-radius: 6px;
+  padding: 16px 14px 16px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.roadmap-card:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+  transform: translateY(-2px);
+}
+
+.roadmap-card.is-current {
+  border-color: rgba(52, 211, 153, 0.5);
+  background: rgba(16, 26, 22, 0.92);
+  box-shadow: 0 0 22px rgba(52, 211, 153, 0.12);
+}
+
+.roadmap-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.roadmap-step-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent-orange);
+  font-weight: 600;
+}
+
+.roadmap-card.is-current .roadmap-step-pill {
+  color: var(--accent-green);
+}
+
+.roadmap-period {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+}
+
+.roadmap-status-badge {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(52, 211, 153, 0.18);
+  color: #6ee7b7;
+  border: 1px solid rgba(52, 211, 153, 0.4);
+}
+
+.roadmap-stage-title {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  line-height: 1.35;
+}
+
+.roadmap-milestones {
+  font-size: 0.74rem;
+  font-family: var(--font-mono);
+  color: var(--accent-green);
+  margin-bottom: 8px;
+  line-height: 1.35;
+}
+
+.roadmap-card.is-current .roadmap-milestones {
+  color: #a7f3d0;
+}
+
+.roadmap-summary {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  margin-bottom: 12px;
+  flex: 1;
+}
+
+.roadmap-skills-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.roadmap-skill-tag {
+  font-family: var(--font-mono);
+  font-size: 0.67rem;
+  padding: 2px 6px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  white-space: nowrap;
+}
+
+.roadmap-card.is-current .roadmap-skill-tag {
+  background: rgba(52, 211, 153, 0.08);
+  border-color: rgba(52, 211, 153, 0.28);
+  color: #e6fcf5;
+}
+
+/* Arrow indicator between cards on desktop */
+.roadmap-card::after {
+  content: "→";
+  position: absolute;
+  right: -11px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--border-strong);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.roadmap-card:last-child::after {
+  display: none;
+}
+
+@media (max-width: 960px) {
+  .cv-roadmap-track {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .roadmap-card:nth-child(2)::after {
+    display: none;
+  }
+
+  .roadmap-card:last-child::after {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .cv-roadmap-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cv-roadmap-track {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .roadmap-card::after {
+    display: none;
+  }
+}
+
 /* Two-Column CV Body Grid (Sidebar + Experience Main) */
 .cv-body-grid {
   display: grid;
@@ -2001,6 +2201,30 @@ body {
   .cv-kpi {
     background: #f7f8f7 !important;
   }
+
+  .cv-roadmap-wrap {
+    background: #ffffff !important;
+    border: 1px solid #dee3e3 !important;
+  }
+
+  .roadmap-card {
+    background: #f7f8f7 !important;
+    border: 1px solid #dee3e3 !important;
+  }
+
+  .roadmap-stage-title {
+    color: #1b2430 !important;
+  }
+
+  .roadmap-summary {
+    color: #4a5568 !important;
+  }
+
+  .roadmap-skill-tag {
+    background: #eef2f2 !important;
+    border-color: #cbd5e1 !important;
+    color: #1e293b !important;
+  }
 }
 
 /* Responsive Adjustments */
@@ -2186,33 +2410,13 @@ body {
   }
 
   .problem-bar {
-    flex-direction: column;
-    align-items: stretch;
-    border-radius: 12px;
-    padding: 12px;
-    gap: 10px;
-  }
-
-  .problem-inputs-group {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 10px;
-  }
-
-  .problem-field-email {
-    flex: auto;
-    border-right: none;
-    border-bottom: 1px solid var(--border-hairline);
-    padding-right: 0;
-    padding-bottom: 8px;
-  }
-
-  .problem-field-note {
-    flex: auto;
+    padding: 5px 5px 5px 18px;
+    border-radius: 999px;
   }
 
   .problem-send-btn {
-    width: 100%;
+    padding: 8px 18px;
+    font-size: 0.86rem;
     min-height: 44px;
   }
 

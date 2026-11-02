@@ -390,21 +390,13 @@
   }
 
   const problemForm = document.getElementById('problem-form');
-  const problemEmail = document.getElementById('problem-email');
   const problemInput = document.getElementById('problem-input');
   const problemFeedback = document.getElementById('problem-form-feedback');
 
   if (problemForm && problemInput) {
     problemForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const email = problemEmail ? problemEmail.value.trim() : '';
       const note = problemInput.value.trim();
-
-      if (problemEmail && !email) {
-        problemEmail.focus();
-        showToast('Please provide your email address so I can respond.');
-        return;
-      }
 
       if (!note) {
         problemInput.focus();
@@ -412,8 +404,11 @@
         return;
       }
 
+      // Check if user included an email address in the note
+      const extractedEmail = note.match(/[\w.-]+@[\w.-]+\.\w+/)?.[0] || '';
+
       const submitBtn = problemForm.querySelector('button[type="submit"]');
-      const originalBtnText = submitBtn ? submitBtn.textContent : 'Send Note';
+      const originalBtnText = submitBtn ? submitBtn.textContent : 'Send';
       if (submitBtn) {
         submitBtn.disabled = true;
         submitBtn.textContent = 'Sending...';
@@ -427,28 +422,31 @@
         data.meta.formEndpoint || `https://formsubmit.co/ajax/${data.meta.directEmail}`;
 
       try {
+        const payload = {
+          _subject: 'Portfolio Direct Inquiry — Ehsan Negahdar',
+          message: note,
+          source: window.location.href,
+          timestamp: new Date().toISOString(),
+        };
+        if (extractedEmail) {
+          payload.email = extractedEmail;
+          payload._replyto = extractedEmail;
+        }
+
         const res = await fetch(endpoint, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             Accept: 'application/json',
           },
-          body: JSON.stringify({
-            _subject: 'Portfolio Direct Inquiry — Ehsan Negahdar',
-            email: email,
-            _replyto: email,
-            message: note,
-            source: window.location.href,
-            timestamp: new Date().toISOString(),
-          }),
+          body: JSON.stringify(payload),
         });
 
         if (res.ok) {
           showToast(`✓ Note sent successfully to ${data.meta.directEmail}!`);
           if (problemFeedback) {
-            problemFeedback.innerHTML = `<span class="feedback-success">✓ Thank you! Your note has been dispatched. I will reply to ${escapeHtml(email)} soon.</span>`;
+            problemFeedback.innerHTML = `<span class="feedback-success">✓ Thank you! Your note has been dispatched. I will reply soon.</span>`;
           }
-          if (problemEmail) problemEmail.value = '';
           problemInput.value = '';
         } else {
           throw new Error('Endpoint returned HTTP ' + res.status);
@@ -459,7 +457,7 @@
         if (problemFeedback) {
           const subject = encodeURIComponent('Problem Inquiry — Direct Note');
           const mailBody = encodeURIComponent(
-            `Hi Ehsan,\n\nFrom: ${email}\nProblem description:\n"${note}"\n\nBest regards,`
+            `Hi Ehsan,\n\nHere is my note/problem inquiry:\n"${note}"\n\nBest regards,`
           );
           const mailtoUrl = `mailto:${data.meta.directEmail}?subject=${subject}&body=${mailBody}`;
 
@@ -477,10 +475,9 @@
           const copyBtn = document.getElementById('feedback-copy-btn');
           if (copyBtn) {
             copyBtn.addEventListener('click', async () => {
-              const fullNote = `Contact: ${email}\nProblem: ${note}`;
               try {
                 if (!navigator.clipboard) throw new Error('No clipboard API');
-                await navigator.clipboard.writeText(fullNote);
+                await navigator.clipboard.writeText(note);
                 copyBtn.textContent = '✓ Copied!';
                 showToast('✓ Note copied to clipboard.');
               } catch (clipErr) {
@@ -640,7 +637,47 @@
         </div>
 
         ${
-          cv.kpis && cv.kpis.length
+          cv.roadmap && cv.roadmap.length
+            ? `
+        <div class="cv-roadmap-wrap" aria-label="Career & Skills Evolution Roadmap">
+          <div class="cv-roadmap-header">
+            <div class="roadmap-header-left">
+              <span class="roadmap-tag">// CAREER &amp; SKILL ROADMAP</span>
+              <span class="roadmap-desc">Evolution from Data &amp; ETL foundations to Autonomous AI Architecture</span>
+            </div>
+            <div class="roadmap-legend">
+              <span class="legend-item"><span class="legend-dot completed"></span> Progression</span>
+              <span class="legend-item"><span class="legend-dot active"></span> Current Focus</span>
+            </div>
+          </div>
+
+          <div class="cv-roadmap-track">
+            ${cv.roadmap
+              .map(
+                (step) => `
+              <div class="roadmap-card ${step.current ? 'is-current' : ''}">
+                <div class="roadmap-card-top">
+                  <div class="roadmap-step-pill">
+                    <span>${step.step}</span>
+                    <span class="slash-accent">//</span>
+                    <span class="roadmap-period">${step.period}</span>
+                  </div>
+                  ${step.current ? '<span class="roadmap-status-badge">Current Focus</span>' : ''}
+                </div>
+                <div class="roadmap-stage-title">${step.stage}</div>
+                <div class="roadmap-milestones">${step.milestones}</div>
+                <p class="roadmap-summary">${step.summary}</p>
+                <div class="roadmap-skills-wrap">
+                  ${step.skills.map((s) => `<span class="roadmap-skill-tag">${s}</span>`).join('')}
+                </div>
+              </div>
+            `
+              )
+              .join('')}
+          </div>
+        </div>
+        `
+            : cv.kpis && cv.kpis.length
             ? `
         <div class="cv-kpi-strip">
           ${cv.kpis

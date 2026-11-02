@@ -161,36 +161,48 @@
       border-bottom: 1px solid var(--line);
     }
 
-    /* KPI Strip */
-    .kpi-strip {
+    /* Career & Skills Roadmap Strip (Replaces 4 data squares) */
+    .roadmap-strip {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 1px;
       background: var(--line);
       border: 1px solid var(--line);
-      margin-top: 3.8mm;
+      margin-top: 3.2mm;
     }
 
-    .kpi {
+    .roadmap-col {
       background: var(--panel);
-      padding: 2mm 3mm;
+      padding: 1.8mm 2.6mm;
     }
 
-    .kpi .num {
+    .roadmap-col.current {
+      background: #f4faf8;
+      border-left: 2px solid var(--accent);
+    }
+
+    .rm-period {
       font-family: var(--mono);
-      font-size: 10.5pt;
+      font-size: 6.8pt;
       color: var(--accent);
       font-weight: 600;
-      line-height: 1.1;
+      line-height: 1.15;
     }
 
-    .kpi .label {
+    .rm-org {
       font-size: 6.4pt;
+      color: var(--ink);
+      font-weight: 500;
+      margin-top: 0.6mm;
+      line-height: 1.2;
+    }
+
+    .rm-skills {
+      font-size: 5.7pt;
       color: var(--ink-soft);
-      text-transform: uppercase;
-      letter-spacing: 0.025em;
-      margin-top: 1px;
-      line-height: 1.25;
+      font-family: var(--mono);
+      margin-top: 0.6mm;
+      line-height: 1.2;
     }
 
     /* ---------- Two-Column Body Filling Remainder of A4 ---------- */
@@ -458,22 +470,26 @@
         </div>
       </div>
 
-      <div class="kpi-strip">
-        <div class="kpi">
-          <div class="num">6+</div>
-          <div class="label">Years in Data &amp; Analytics</div>
+      <div class="roadmap-strip">
+        <div class="roadmap-col">
+          <div class="rm-period">2019–2021 · Data &amp; ETL</div>
+          <div class="rm-org">Hamrah &amp; Rose Academies</div>
+          <div class="rm-skills">SQL · Python · Power BI · ETL</div>
         </div>
-        <div class="kpi">
-          <div class="num">4</div>
-          <div class="label">Industries: Fintech, Consulting, Retail, Education</div>
+        <div class="roadmap-col">
+          <div class="rm-period">2021–2023 · Process &amp; Systems</div>
+          <div class="rm-org">Sarshenas · MSc IT (UT)</div>
+          <div class="rm-skills">Process Mapping · Diagnostics</div>
         </div>
-        <div class="kpi">
-          <div class="num">2</div>
-          <div class="label">Master's Degrees</div>
+        <div class="roadmap-col">
+          <div class="rm-period">2024–2025 · Digital Strategy</div>
+          <div class="rm-org">MSc Digital Business (UvA)</div>
+          <div class="rm-skills">Strategy Analytics · Decision Science</div>
         </div>
-        <div class="kpi">
-          <div class="num">4</div>
-          <div class="label">Core Tools: SQL, Python, Power BI, Excel</div>
+        <div class="roadmap-col current">
+          <div class="rm-period">2025–Pres · Autonomous AI</div>
+          <div class="rm-org">BuildRelay · Pulse Pilates</div>
+          <div class="rm-skills">Agentic AI · Workflows</div>
         </div>
       </div>
     </header>

@@ -210,6 +210,58 @@
       color: var(--ink-muted);
     }
 
+    /* Roadmap Grid */
+    .roadmap-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .rm-box {
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 8px 10px;
+      background: #fafbfc;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .rm-box.current {
+      background: var(--accent-tint);
+      border-color: var(--accent);
+    }
+
+    .rm-tag {
+      font-family: var(--mono);
+      font-size: 7pt;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .rm-name {
+      font-weight: 600;
+      font-size: 8pt;
+      color: var(--ink);
+    }
+
+    .rm-desc {
+      font-size: 7.4pt;
+      color: var(--ink-muted);
+      line-height: 1.35;
+      flex: 1;
+    }
+
+    .rm-sk {
+      font-family: var(--mono);
+      font-size: 6.8pt;
+      color: var(--ink-light);
+      border-top: 1px solid var(--line-subtle);
+      padding-top: 4px;
+      margin-top: 3px;
+    }
+
     /* Experience & Projects Entries */
     .entry-list {
       display: flex;
@@ -399,8 +451,38 @@
     <section id="profile">
       <h2 class="section-heading">Professional Profile</h2>
       <p class="profile-text">
-        Business and systems analysis professional focused on designing AI-enabled solutions around organizational needs. Combines process analysis, requirements definition and system design with data analysis and human-in-the-loop workflows. Uses evidence and iterative testing to assess design choices, with agent-assisted implementation where appropriate.
+        Business and systems analysis professional focused on designing practical data and workflow solutions around organizational needs. Combines process analysis, requirements definition, and system design with data analysis and human-in-the-loop workflows. Hands-on expertise in Python, SQL, Power BI, and agentic workflows.
       </p>
+    </section>
+
+    <section id="roadmap">
+      <h2 class="section-heading">Career &amp; Skills Evolution Roadmap</h2>
+      <div class="roadmap-grid">
+        <div class="rm-box">
+          <div class="rm-tag">2019–2021 · Data &amp; ETL</div>
+          <div class="rm-name">Hamrah &amp; Rose Academies</div>
+          <div class="rm-desc">Data pipelines, CRM analytics &amp; automated dashboards.</div>
+          <div class="rm-sk">SQL · Python (Pandas) · Power BI · ETL</div>
+        </div>
+        <div class="rm-box">
+          <div class="rm-tag">2021–2023 · Process &amp; Systems</div>
+          <div class="rm-name">Sarshenas · MSc IT (UT)</div>
+          <div class="rm-desc">Process mapping, workflow diagnostics &amp; KPI dashboards.</div>
+          <div class="rm-sk">Process Optimization · Requirements · BI</div>
+        </div>
+        <div class="rm-box">
+          <div class="rm-tag">2024–2025 · Digital Strategy</div>
+          <div class="rm-name">MSc Digital Business (UvA)</div>
+          <div class="rm-desc">Talent Fund Scholar; digital systems &amp; simulation modeling.</div>
+          <div class="rm-sk">Strategy Analytics · Decision Frameworks</div>
+        </div>
+        <div class="rm-box current">
+          <div class="rm-tag">2025–Pres · Autonomous AI</div>
+          <div class="rm-name">BuildRelay · Pulse Pilates</div>
+          <div class="rm-desc">Multi-agent workflow design &amp; booking system migration.</div>
+          <div class="rm-sk">Agentic AI · Systems Architecture · Workflows</div>
+        </div>
+      </div>
     </section>
 
     <section id="skills">
