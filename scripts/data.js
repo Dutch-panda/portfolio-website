@@ -4,17 +4,17 @@
  */
 window.PORTFOLIO_DATA = {
   meta: {
-    title: "Ehsan Negahdar — AI Solution Designer | Business Analysis & Systems Design",
-    kicker: "EHSAN NEGAHDAR // AI SOLUTION DESIGNER",
-    headlineLine1: "I turn business needs into practical systems and processes,",
-    headlineLine2: "using AI where it fits.",
+    title: "Ehsan Negahdar — Business Data Analyst & Systems Architect",
+    kicker: "EHSAN NEGAHDAR // BUSINESS DATA ANALYST & SYSTEMS ARCHITECT",
+    headlineLine1: "Untangling complex systems.",
+    headlineLine2: "Designing autonomous workflows.",
     subheadline:
-      "Business and systems analysis professional focused on designing AI-enabled solutions around organizational needs. Combining process analysis, requirements definition, and system design with data analysis and human-in-the-loop workflows.",
+      "Turning messy operational data, process bottlenecks, and ambiguous domain questions into clear architecture, decision frameworks, and AI workflows.",
     availability: "Available",
-    availabilityDetail: "Open for select systems, process design & AI workflow problems",
+    availabilityDetail: "Amsterdam, NL · Open for select systems, data & AI workflow problems",
     directEmail: "en.mirror@gmail.com",
     phone: "+31 68 494 2790",
-    location: "Muscat, Oman",
+    location: "Amsterdam, Netherlands",
     githubUrl: "https://github.com/Dutch-panda",
     linkedinUrl: "https://www.linkedin.com/in/ehsan-negahdar/",
     systemStatus: "Clean",
@@ -146,14 +146,20 @@ window.PORTFOLIO_DATA = {
 
   cv: {
     name: "Ehsan Negahdar",
-    title: "AI Solution Designer | Business Analysis, Systems Design & Process Optimization",
-    location: "Muscat, Oman",
+    title: "Business Data Analyst · Strategy, Systems & Process Optimization",
+    location: "Amsterdam, Netherlands",
     email: "en.mirror@gmail.com",
     phone: "+31 68 494 2790",
     linkedin: "https://www.linkedin.com/in/ehsan-negahdar/",
     github: "https://github.com/Dutch-panda",
     summary:
-      "Business and systems analysis professional focused on designing AI-enabled solutions around organizational needs. Combines process analysis, requirements definition and system design with data analysis and human-in-the-loop workflows. Uses evidence and iterative testing to assess design choices, with agent-assisted implementation where appropriate.",
+      "Business and systems analysis professional focused on designing practical data and workflow solutions around organizational needs. Combines process analysis, requirements definition, and system design with data analysis and human-in-the-loop workflows. Hands-on expertise in Python, SQL, Power BI, and agentic workflows.",
+    kpis: [
+      { num: "6+", label: "Years in Data, Systems & Analytics" },
+      { num: "4", label: "Industries: Fintech, Consulting, Retail, Education" },
+      { num: "2", label: "Master's Degrees (UvA & UT)" },
+      { num: "Core", label: "SQL · Python · Power BI · Agentic AI" },
+    ],
     skills: [
       { name: "Business & System Analysis", desc: "Requirements analysis, process mapping, system & workflow design, evaluation" },
       { name: "AI Workflow Design", desc: "Agent orchestration, context persistence, human-review boundaries" },

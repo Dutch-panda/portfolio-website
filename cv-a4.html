@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ehsan Negahdar — CV (A4 Print View)</title>
-  <meta name="description" content="Print-ready curriculum vitae of Ehsan Negahdar — AI Solution Designer | Business Analysis, Systems Design &amp; Process Optimization." />
+  <title>Ehsan Negahdar — CV (A4 Printable)</title>
+  <meta name="description" content="Print-ready curriculum vitae of Ehsan Negahdar — Business Data Analyst, Systems &amp; Agentic AI." />
   <meta name="author" content="Ehsan Negahdar" />
   <link rel="icon" type="image/svg+xml" href="./assets/logo-git-e.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -102,16 +102,17 @@
       color: #ffffff;
     }
 
-    /* A4 Sheet Container */
+    /* Exact A4 Sheet Container: 210mm x 297mm */
     .a4-sheet {
       width: 210mm;
-      min-height: 297mm;
+      height: 297mm;
       margin: 0 auto 28px;
       background: var(--panel);
       border: 1px solid var(--line);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
       display: flex;
       flex-direction: column;
+      overflow: hidden;
     }
 
     /* ---------- Header ---------- */
@@ -160,24 +161,36 @@
       border-bottom: 1px solid var(--line);
     }
 
-    /* Focus Strip (Replaces ornamental decorative KPI counters) */
-    .focus-strip {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-family: var(--mono);
-      font-size: 7pt;
-      color: var(--ink-soft);
-      border-top: 1px solid var(--line);
-      margin-top: 3.5mm;
-      padding-top: 2.5mm;
+    /* KPI Strip */
+    .kpi-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      margin-top: 3.8mm;
     }
 
-    .focus-label {
+    .kpi {
+      background: var(--panel);
+      padding: 2mm 3mm;
+    }
+
+    .kpi .num {
+      font-family: var(--mono);
+      font-size: 10.5pt;
       color: var(--accent);
       font-weight: 600;
+      line-height: 1.1;
+    }
+
+    .kpi .label {
+      font-size: 6.4pt;
+      color: var(--ink-soft);
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.025em;
+      margin-top: 1px;
+      line-height: 1.25;
     }
 
     /* ---------- Two-Column Body Filling Remainder of A4 ---------- */
@@ -422,13 +435,8 @@
 </head>
 <body>
   <div class="screen-toolbar">
-    <div>
-      <a href="./cv.html" class="toolbar-link">← Portfolio Web CV</a>
-      <span style="margin: 0 8px; color: #555;">|</span>
-      <span>A4 Two-Column Print View</span>
-      <span style="margin: 0 8px; color: #555;">|</span>
-      <a href="./cv-app.html" class="toolbar-link">Single-Column Application View ↗</a>
-    </div>
+    <a href="./cv.html" class="toolbar-link">← Back to Dark-Mode Portfolio CV</a>
+    <span>A4 Light Printable CV (210mm × 297mm — Single Sheet)</span>
     <div class="toolbar-actions">
       <a href="./assets/Ehsan-Negahdar-CV.pdf" download="Ehsan-Negahdar-CV.pdf" class="toolbar-btn">Download A4 PDF ↓</a>
       <button type="button" class="toolbar-btn-secondary" onclick="window.print()">Print Sheet</button>
@@ -440,19 +448,33 @@
       <div class="name-row">
         <div>
           <h1>Ehsan Negahdar</h1>
-          <div class="title">AI Solution Designer | Business Analysis, Systems Design &amp; Process Optimization</div>
+          <div class="title">Business Data Analyst · Strategy &amp; Process Optimization</div>
         </div>
         <div class="contact">
-          Muscat, Oman<br />
+          Amsterdam, Netherlands<br />
           <a href="mailto:en.mirror@gmail.com">en.mirror@gmail.com</a> · +31 68 494 2790<br />
           <a href="https://www.linkedin.com/in/ehsan-negahdar/" target="_blank">linkedin.com/in/ehsan-negahdar</a> ·
           <a href="https://github.com/Dutch-panda" target="_blank">github.com/Dutch-panda</a>
         </div>
       </div>
 
-      <div class="focus-strip">
-        <span class="focus-label">Core Focus //</span>
-        <span>AI Solution Design · Business Analysis · Process Optimization · Data Telemetry</span>
+      <div class="kpi-strip">
+        <div class="kpi">
+          <div class="num">6+</div>
+          <div class="label">Years in Data &amp; Analytics</div>
+        </div>
+        <div class="kpi">
+          <div class="num">4</div>
+          <div class="label">Industries: Fintech, Consulting, Retail, Education</div>
+        </div>
+        <div class="kpi">
+          <div class="num">2</div>
+          <div class="label">Master's Degrees</div>
+        </div>
+        <div class="kpi">
+          <div class="num">4</div>
+          <div class="label">Core Tools: SQL, Python, Power BI, Excel</div>
+        </div>
       </div>
     </header>
 
