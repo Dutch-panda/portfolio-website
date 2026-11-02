@@ -102,22 +102,23 @@
       color: #ffffff;
     }
 
-    /* Exact A4 Sheet Container: 210mm x 297mm */
+    /* A4 Sheet Container: 210mm x 297mm (Calibrated for full content visibility) */
     .a4-sheet {
       width: 210mm;
-      height: 297mm;
+      min-height: 297mm;
+      height: auto;
       margin: 0 auto 28px;
       background: var(--panel);
       border: 1px solid var(--line);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
       display: flex;
       flex-direction: column;
-      overflow: hidden;
+      overflow: visible;
     }
 
     /* ---------- Header ---------- */
     header {
-      padding: 7.2mm 11mm 4.5mm;
+      padding: 3.5mm 9.5mm 1.8mm;
       border-bottom: 1px solid var(--line);
       flex-shrink: 0;
     }
@@ -132,7 +133,7 @@
     h1 {
       font-family: 'Fraunces', serif;
       font-weight: 600;
-      font-size: 20.5pt;
+      font-size: 18.5pt;
       letter-spacing: -0.01em;
       line-height: 1.05;
       color: var(--ink);
@@ -140,18 +141,18 @@
 
     .title {
       font-family: var(--mono);
-      font-size: 7.8pt;
+      font-size: 7.4pt;
       letter-spacing: 0.04em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-top: 2.5px;
+      margin-top: 1.5px;
     }
 
     .contact {
-      font-size: 7.8pt;
+      font-size: 7.4pt;
       color: var(--ink-soft);
       text-align: right;
-      line-height: 1.42;
+      line-height: 1.35;
       white-space: nowrap;
     }
 
@@ -168,12 +169,12 @@
       gap: 1px;
       background: var(--line);
       border: 1px solid var(--line);
-      margin-top: 3.2mm;
+      margin-top: 1.8mm;
     }
 
     .roadmap-col {
       background: var(--panel);
-      padding: 1.8mm 2.6mm;
+      padding: 1.2mm 2.2mm;
     }
 
     .roadmap-col.current {
@@ -183,38 +184,38 @@
 
     .rm-period {
       font-family: var(--mono);
-      font-size: 6.8pt;
+      font-size: 6.4pt;
       color: var(--accent);
       font-weight: 600;
       line-height: 1.15;
     }
 
     .rm-org {
-      font-size: 6.4pt;
+      font-size: 6pt;
       color: var(--ink);
       font-weight: 500;
-      margin-top: 0.6mm;
-      line-height: 1.2;
+      margin-top: 0.3mm;
+      line-height: 1.15;
     }
 
     .rm-skills {
-      font-size: 5.7pt;
+      font-size: 5.4pt;
       color: var(--ink-soft);
       font-family: var(--mono);
-      margin-top: 0.6mm;
-      line-height: 1.2;
+      margin-top: 0.3mm;
+      line-height: 1.15;
     }
 
     /* ---------- Two-Column Body Filling Remainder of A4 ---------- */
     .body-grid {
       display: grid;
-      grid-template-columns: 58mm 1fr;
+      grid-template-columns: 56mm 1fr;
       flex: 1;
       min-height: 0;
     }
 
     aside {
-      padding: 4.8mm 6mm 5.5mm 11mm;
+      padding: 2.8mm 4.5mm 3mm 9.5mm;
       border-right: 1px solid var(--line);
       background: #fbfcfc;
       display: flex;
@@ -223,25 +224,25 @@
     }
 
     main {
-      padding: 4.8mm 11mm 5.5mm 7.5mm;
+      padding: 2.8mm 9.5mm 3mm 5.5mm;
       display: flex;
       flex-direction: column;
     }
 
     h2 {
       font-family: var(--mono);
-      font-size: 7.2pt;
+      font-size: 6.9pt;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--accent);
-      margin: 0 0 1.8mm;
-      padding-bottom: 1mm;
+      margin: 0 0 1.1mm;
+      padding-bottom: 0.6mm;
       border-bottom: 1px solid var(--line);
       flex-shrink: 0;
     }
 
     .aside-section {
-      margin-bottom: 2.2mm;
+      margin-bottom: 1.3mm;
     }
 
     .aside-section:last-child {
@@ -250,14 +251,14 @@
 
     p.summary {
       color: var(--ink);
-      font-size: 7.9pt;
-      line-height: 1.36;
+      font-size: 7.3pt;
+      line-height: 1.3;
     }
 
     .skill-item {
-      font-size: 7.7pt;
-      margin-bottom: 1.25mm;
-      line-height: 1.22;
+      font-size: 7.1pt;
+      margin-bottom: 0.7mm;
+      line-height: 1.18;
     }
 
     .skill-item:last-child {
@@ -272,11 +273,11 @@
     .skill-item .sk-desc {
       display: block;
       color: var(--ink-soft);
-      font-size: 7.1pt;
+      font-size: 6.6pt;
     }
 
     .edu-item {
-      margin-bottom: 1.8mm;
+      margin-bottom: 1mm;
     }
 
     .edu-item:last-child {
@@ -285,27 +286,27 @@
 
     .edu-item .deg {
       font-weight: 600;
-      font-size: 7.8pt;
+      font-size: 7.3pt;
       color: var(--ink);
-      line-height: 1.2;
+      line-height: 1.16;
     }
 
     .edu-item .school {
-      font-size: 7.3pt;
+      font-size: 6.9pt;
       color: var(--ink-soft);
     }
 
     .edu-item .dates {
       font-family: var(--mono);
-      font-size: 6.7pt;
+      font-size: 6.4pt;
       color: var(--accent);
-      margin-top: 0.3mm;
+      margin-top: 0.2mm;
     }
 
     .award-item {
-      margin-bottom: 1.4mm;
-      font-size: 7.5pt;
-      line-height: 1.22;
+      margin-bottom: 0.8mm;
+      font-size: 7.1pt;
+      line-height: 1.16;
     }
 
     .award-item:last-child {
@@ -320,14 +321,14 @@
 
     .award-item .a-meta {
       color: var(--ink-soft);
-      font-size: 6.9pt;
+      font-size: 6.6pt;
     }
 
     .lang-item {
       display: flex;
       justify-content: space-between;
-      font-size: 7.6pt;
-      margin-bottom: 0.9mm;
+      font-size: 7.2pt;
+      margin-bottom: 0.5mm;
     }
 
     .lang-item:last-child {
@@ -337,7 +338,7 @@
     .lang-item .lvl {
       color: var(--ink-soft);
       font-family: var(--mono);
-      font-size: 7pt;
+      font-size: 6.7pt;
     }
 
     /* ---------- Experience Entries ---------- */
@@ -350,8 +351,8 @@
     }
 
     .exp-entry {
-      padding-bottom: 1.8mm;
-      margin-bottom: 1.8mm;
+      padding-bottom: 1mm;
+      margin-bottom: 1mm;
       border-bottom: 1px solid var(--line);
     }
 
@@ -366,14 +367,14 @@
       justify-content: space-between;
       align-items: baseline;
       gap: 6px;
-      margin-bottom: 0.3mm;
+      margin-bottom: 0.15mm;
     }
 
     .exp-role {
-      font-size: 8.6pt;
+      font-size: 7.85pt;
       font-weight: 600;
       color: var(--ink);
-      line-height: 1.22;
+      line-height: 1.18;
     }
 
     .exp-role .org {
@@ -383,29 +384,29 @@
 
     .exp-dates {
       font-family: var(--mono);
-      font-size: 6.9pt;
+      font-size: 6.6pt;
       color: var(--ink-soft);
       white-space: nowrap;
       flex-shrink: 0;
     }
 
     .exp-meta {
-      font-size: 7.1pt;
+      font-size: 6.7pt;
       color: var(--ink-soft);
       font-style: italic;
-      margin-bottom: 0.8mm;
+      margin-bottom: 0.4mm;
     }
 
     ul.bullets {
       margin: 0;
-      padding-left: 3.5mm;
+      padding-left: 3mm;
     }
 
     ul.bullets li {
-      margin-bottom: 0.6mm;
+      margin-bottom: 0.35mm;
       color: #2f3943;
-      font-size: 7.85pt;
-      line-height: 1.31;
+      font-size: 7.05pt;
+      line-height: 1.22;
     }
 
     ul.bullets li:last-child {
@@ -415,12 +416,12 @@
     .current-tag {
       display: inline-block;
       font-family: var(--mono);
-      font-size: 6pt;
+      font-size: 5.8pt;
       text-transform: uppercase;
       letter-spacing: 0.04em;
       color: var(--accent);
       background: var(--accent-tint);
-      padding: 0.5px 4px;
+      padding: 0.5px 3.5px;
       border-radius: 2px;
       margin-left: 4px;
       vertical-align: middle;
@@ -437,10 +438,14 @@
         margin: 0;
         border: none;
         box-shadow: none;
-        width: 210mm;
-        height: 297mm;
-        page-break-after: avoid;
-        break-after: avoid;
+        width: 100%;
+        min-height: 297mm;
+        height: auto;
+        overflow: visible;
+      }
+      .exp-entry, .aside-section, .edu-item {
+        break-inside: avoid;
+        page-break-inside: avoid;
       }
     }
   </style>

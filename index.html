@@ -160,16 +160,31 @@
 
           <div class="problem-form-wrap">
             <form id="problem-form" class="problem-bar" autocomplete="off">
-              <input
-                type="text"
-                id="problem-input"
-                name="message"
-                class="problem-input"
-                placeholder="Have a complex problem? Send a direct note..."
-                aria-label="Have a complex problem? Send a direct note"
-                required
-              />
-              <button type="submit" class="problem-send-btn" id="problem-submit-btn">Send</button>
+              <div class="problem-inputs-group">
+                <div class="problem-field-email">
+                  <input
+                    type="email"
+                    id="problem-email"
+                    name="email"
+                    class="problem-input"
+                    placeholder="Your email address (required)..."
+                    aria-label="Your email address"
+                    required
+                  />
+                </div>
+                <div class="problem-field-note">
+                  <input
+                    type="text"
+                    id="problem-input"
+                    name="message"
+                    class="problem-input"
+                    placeholder="Describe a system, data, or workflow bottleneck..."
+                    aria-label="Describe a system, data, or workflow bottleneck"
+                    required
+                  />
+                </div>
+              </div>
+              <button type="submit" class="problem-send-btn" id="problem-submit-btn">Send Note</button>
             </form>
             <div id="problem-form-feedback" class="problem-form-feedback" aria-live="polite"></div>
             <div class="hero-quick-meta">

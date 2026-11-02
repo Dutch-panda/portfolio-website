@@ -390,13 +390,21 @@
   }
 
   const problemForm = document.getElementById('problem-form');
+  const problemEmail = document.getElementById('problem-email');
   const problemInput = document.getElementById('problem-input');
   const problemFeedback = document.getElementById('problem-form-feedback');
 
   if (problemForm && problemInput) {
     problemForm.addEventListener('submit', async (e) => {
       e.preventDefault();
+      const email = problemEmail ? problemEmail.value.trim() : '';
       const note = problemInput.value.trim();
+
+      if (problemEmail && !email) {
+        problemEmail.focus();
+        showToast('Please provide your email address so I can respond.');
+        return;
+      }
 
       if (!note) {
         problemInput.focus();
@@ -404,11 +412,8 @@
         return;
       }
 
-      // Check if user included an email address in the note
-      const extractedEmail = note.match(/[\w.-]+@[\w.-]+\.\w+/)?.[0] || '';
-
       const submitBtn = problemForm.querySelector('button[type="submit"]');
-      const originalBtnText = submitBtn ? submitBtn.textContent : 'Send';
+      const originalBtnText = submitBtn ? submitBtn.textContent : 'Send Note';
       if (submitBtn) {
         submitBtn.disabled = true;
         submitBtn.textContent = 'Sending...';
@@ -424,14 +429,12 @@
       try {
         const payload = {
           _subject: 'Portfolio Direct Inquiry — Ehsan Negahdar',
+          email: email,
+          _replyto: email,
           message: note,
           source: window.location.href,
           timestamp: new Date().toISOString(),
         };
-        if (extractedEmail) {
-          payload.email = extractedEmail;
-          payload._replyto = extractedEmail;
-        }
 
         const res = await fetch(endpoint, {
           method: 'POST',
@@ -445,19 +448,20 @@
         if (res.ok) {
           showToast(`✓ Note sent successfully to ${data.meta.directEmail}!`);
           if (problemFeedback) {
-            problemFeedback.innerHTML = `<span class="feedback-success">✓ Thank you! Your note has been dispatched. I will reply soon.</span>`;
+            problemFeedback.innerHTML = `<span class="feedback-success">✓ Thank you! Your note has been dispatched. I will reply to ${escapeHtml(email)} soon.</span>`;
           }
+          if (problemEmail) problemEmail.value = '';
           problemInput.value = '';
         } else {
           throw new Error('Endpoint returned HTTP ' + res.status);
         }
       } catch (err) {
-        // NON-DESTRUCTIVE RECOVERY: Keep user's input intact
+        // NON-DESTRUCTIVE RECOVERY (UX-02): Keep user's input intact
         showToast('Unable to send automatically. Note preserved below.');
         if (problemFeedback) {
           const subject = encodeURIComponent('Problem Inquiry — Direct Note');
           const mailBody = encodeURIComponent(
-            `Hi Ehsan,\n\nHere is my note/problem inquiry:\n"${note}"\n\nBest regards,`
+            `Hi Ehsan,\n\nFrom: ${email}\nProblem description:\n"${note}"\n\nBest regards,`
           );
           const mailtoUrl = `mailto:${data.meta.directEmail}?subject=${subject}&body=${mailBody}`;
 
@@ -475,11 +479,12 @@
           const copyBtn = document.getElementById('feedback-copy-btn');
           if (copyBtn) {
             copyBtn.addEventListener('click', async () => {
+              const fullNote = `Contact: ${email}\nProblem: ${note}`;
               try {
                 if (!navigator.clipboard) throw new Error('No clipboard API');
-                await navigator.clipboard.writeText(note);
+                await navigator.clipboard.writeText(fullNote);
                 copyBtn.textContent = '✓ Copied!';
-                showToast('✓ Note copied to clipboard.');
+                showToast('✓ Note & contact details copied to clipboard.');
               } catch (clipErr) {
                 copyBtn.textContent = 'Select text manually';
                 showToast('Clipboard access unavailable. Please select your text manually.');
@@ -553,11 +558,11 @@
         </div>
 
         <div class="project-case-body">
-          <div>
+          <div class="project-case-overview-full">
             <div class="project-subhead">${proj.scopeHeading || 'Architecture & Scope'}</div>
             <p class="project-OverviewText">${proj.details}</p>
           </div>
-          <div>
+          <div class="project-case-methodology-wrap">
             <div class="project-subhead">${proj.methodologyHeading || 'How It Was Untangled'}</div>
             <ul class="project-methodology-list">
               ${(proj.methodology || []).map((m) => `<li>${m}</li>`).join('')}
