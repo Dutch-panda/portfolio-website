@@ -639,6 +639,9 @@
           </div>
         </div>
 
+        ${
+          cv.kpis && cv.kpis.length
+            ? `
         <div class="cv-kpi-strip">
           ${cv.kpis
             .map(
@@ -651,6 +654,9 @@
             )
             .join('')}
         </div>
+        `
+            : ''
+        }
       </div>
 
       <div class="cv-body-grid">
@@ -770,41 +776,21 @@
   }
 
   if (blogFullList) {
-    // If the list is empty (fallback dynamic rendering), render from data.blogPosts
-    if (!blogFullList.children.length && data.blogPosts) {
-      blogFullList.innerHTML = data.blogPosts
-        .map(
-          (post) => `
-        <article class="stage-box blog-article-box" id="${post.id}">
+    if (!data.blogPosts || !data.blogPosts.length) {
+      blogFullList.innerHTML = `
+        <div class="stage-box blog-empty-box" style="padding: 48px; text-align: center;">
           <span class="box-corner-bl" aria-hidden="true"></span>
           <span class="box-corner-br" aria-hidden="true"></span>
-          <div class="blog-meta-row">
-            <span class="blog-category">${post.category}</span>
-            <span class="blog-meta-sep">·</span>
-            <span class="blog-date">${post.date}</span>
-            <span class="blog-meta-sep">·</span>
-            <span class="read-time-pill">${post.readTime}</span>
-            <div class="blog-meta-actions">
-              <button
-                type="button"
-                class="blog-share-btn"
-                data-permalink="${post.id}"
-                title="Copy permalink to this field note"
-                aria-label="Copy link to ${post.title}"
-              >
-                <span class="share-icon" aria-hidden="true">#</span> Copy Link
-              </button>
-            </div>
-          </div>
-          <h2 class="blog-title">
-            <a href="#${post.id}" class="blog-title-anchor" title="Permalink to this section">${post.title}</a>
-          </h2>
-          ${(post.body || [post.excerpt]).map((p) => `<p class="blog-body-p">${p}</p>`).join('')}
-        </article>
-      `
-        )
-        .join('');
+          <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 8px;">
+            Articles coming soon.
+          </p>
+          <p style="font-size: 0.88rem; color: var(--text-muted);">
+            Field notes and dispatches on systems design, process analysis, and practical AI workflows are being prepared.
+          </p>
+        </div>
+      `;
+    } else {
+      initBlogShareButtons();
     }
-    initBlogShareButtons();
   }
 })();

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ehsan Negahdar — CV (A4 Printable)</title>
-  <meta name="description" content="Print-ready curriculum vitae of Ehsan Negahdar — Business Data Analyst, Systems & Agentic AI." />
+  <title>Ehsan Negahdar — CV (A4 Print View)</title>
+  <meta name="description" content="Print-ready curriculum vitae of Ehsan Negahdar — AI Solution Designer | Business Analysis, Systems Design &amp; Process Optimization." />
   <meta name="author" content="Ehsan Negahdar" />
   <link rel="icon" type="image/svg+xml" href="./assets/logo-git-e.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -102,17 +102,16 @@
       color: #ffffff;
     }
 
-    /* Exact A4 Sheet Container: 210mm x 297mm */
+    /* A4 Sheet Container */
     .a4-sheet {
       width: 210mm;
-      height: 297mm;
+      min-height: 297mm;
       margin: 0 auto 28px;
       background: var(--panel);
       border: 1px solid var(--line);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
       display: flex;
       flex-direction: column;
-      overflow: hidden;
     }
 
     /* ---------- Header ---------- */
@@ -161,36 +160,24 @@
       border-bottom: 1px solid var(--line);
     }
 
-    /* KPI Strip */
-    .kpi-strip {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: var(--line);
-      border: 1px solid var(--line);
-      margin-top: 3.8mm;
-    }
-
-    .kpi {
-      background: var(--panel);
-      padding: 2mm 3mm;
-    }
-
-    .kpi .num {
+    /* Focus Strip (Replaces ornamental decorative KPI counters) */
+    .focus-strip {
+      display: flex;
+      align-items: center;
+      gap: 12px;
       font-family: var(--mono);
-      font-size: 10.5pt;
+      font-size: 7pt;
+      color: var(--ink-soft);
+      border-top: 1px solid var(--line);
+      margin-top: 3.5mm;
+      padding-top: 2.5mm;
+    }
+
+    .focus-label {
       color: var(--accent);
       font-weight: 600;
-      line-height: 1.1;
-    }
-
-    .kpi .label {
-      font-size: 6.4pt;
-      color: var(--ink-soft);
       text-transform: uppercase;
-      letter-spacing: 0.025em;
-      margin-top: 1px;
-      line-height: 1.25;
+      letter-spacing: 0.06em;
     }
 
     /* ---------- Two-Column Body Filling Remainder of A4 ---------- */
@@ -435,8 +422,13 @@
 </head>
 <body>
   <div class="screen-toolbar">
-    <a href="./cv.html" class="toolbar-link">← Back to Dark-Mode Portfolio CV</a>
-    <span>A4 Light Printable CV (210mm × 297mm — Single Sheet)</span>
+    <div>
+      <a href="./cv.html" class="toolbar-link">← Portfolio Web CV</a>
+      <span style="margin: 0 8px; color: #555;">|</span>
+      <span>A4 Two-Column Print View</span>
+      <span style="margin: 0 8px; color: #555;">|</span>
+      <a href="./cv-app.html" class="toolbar-link">Single-Column Application View ↗</a>
+    </div>
     <div class="toolbar-actions">
       <a href="./assets/Ehsan-Negahdar-CV.pdf" download="Ehsan-Negahdar-CV.pdf" class="toolbar-btn">Download A4 PDF ↓</a>
       <button type="button" class="toolbar-btn-secondary" onclick="window.print()">Print Sheet</button>
@@ -448,73 +440,56 @@
       <div class="name-row">
         <div>
           <h1>Ehsan Negahdar</h1>
-          <div class="title">Business Data Analyst · Strategy &amp; Process Optimization</div>
+          <div class="title">AI Solution Designer | Business Analysis, Systems Design &amp; Process Optimization</div>
         </div>
         <div class="contact">
-          Amsterdam, Netherlands<br />
+          Muscat, Oman<br />
           <a href="mailto:en.mirror@gmail.com">en.mirror@gmail.com</a> · +31 68 494 2790<br />
           <a href="https://www.linkedin.com/in/ehsan-negahdar/" target="_blank">linkedin.com/in/ehsan-negahdar</a> ·
           <a href="https://github.com/Dutch-panda" target="_blank">github.com/Dutch-panda</a>
         </div>
       </div>
 
-      <div class="kpi-strip">
-        <div class="kpi">
-          <div class="num">6+</div>
-          <div class="label">Years in Data &amp; Analytics</div>
-        </div>
-        <div class="kpi">
-          <div class="num">4</div>
-          <div class="label">Industries: Fintech, Consulting, Retail, Education</div>
-        </div>
-        <div class="kpi">
-          <div class="num">2</div>
-          <div class="label">Master's Degrees</div>
-        </div>
-        <div class="kpi">
-          <div class="num">4</div>
-          <div class="label">Core Tools: SQL, Python, Power BI, Excel</div>
-        </div>
+      <div class="focus-strip">
+        <span class="focus-label">Core Focus //</span>
+        <span>AI Solution Design · Business Analysis · Process Optimization · Data Telemetry</span>
       </div>
     </header>
 
     <div class="body-grid">
       <aside>
         <div class="aside-section">
-          <h2>Summary</h2>
+          <h2>Profile</h2>
           <p class="summary">
-            Business Data Analyst with experience in consulting, fintech, and process optimization,
-            turning data into actionable insights that improve efficiency, support strategic
-            decisions, and drive business growth. Hands-on experience with Python, SQL, Excel, and
-            Power BI across CRM, process, and transactional data.
+            Business and systems analysis professional focused on designing AI-enabled solutions around organizational needs. Combines process analysis, requirements definition and system design with data analysis and human-in-the-loop workflows. Uses evidence and iterative testing to assess design choices, with agent-assisted implementation where appropriate.
           </p>
         </div>
 
         <div class="aside-section">
           <h2>Skills</h2>
-          <div class="skill-item"><span class="sk-name">SQL</span><span class="sk-desc">Advanced querying, performance tuning</span></div>
-          <div class="skill-item"><span class="sk-name">Python</span><span class="sk-desc">Pandas, NumPy, Matplotlib</span></div>
-          <div class="skill-item"><span class="sk-name">Power BI</span><span class="sk-desc">Dashboards, DAX, data modeling</span></div>
-          <div class="skill-item"><span class="sk-name">ETL &amp; Data Prep</span><span class="sk-desc">Cleaning, transformation, validation</span></div>
-          <div class="skill-item"><span class="sk-name">Data Visualization</span><span class="sk-desc">Storytelling with data</span></div>
-          <div class="skill-item"><span class="sk-name">CRM Analytics</span><span class="sk-desc">Churn, segmentation, engagement</span></div>
-          <div class="skill-item"><span class="sk-name">Process Optimization</span><span class="sk-desc">Process mapping, benchmarking</span></div>
+          <div class="skill-item"><span class="sk-name">Business &amp; System Analysis</span><span class="sk-desc">Requirements analysis, process mapping, system &amp; workflow design, evaluation</span></div>
+          <div class="skill-item"><span class="sk-name">AI Workflow Design</span><span class="sk-desc">Agent orchestration, context persistence, human-review boundaries</span></div>
+          <div class="skill-item"><span class="sk-name">SQL</span><span class="sk-desc">Joins, aggregations, CTEs, basic query optimization</span></div>
+          <div class="skill-item"><span class="sk-name">Python</span><span class="sk-desc">Pandas, NumPy, Matplotlib, Seaborn, Flask &amp; Jinja templates</span></div>
+          <div class="skill-item"><span class="sk-name">Power BI</span><span class="sk-desc">Prior experience with data modeling &amp; relationships</span></div>
+          <div class="skill-item"><span class="sk-name">ETL &amp; Data Prep</span><span class="sk-desc">Cleaning, transformation, schema validation</span></div>
+          <div class="skill-item"><span class="sk-name">CRM Analytics</span><span class="sk-desc">Customer segmentation, cohort analysis, engagement metrics</span></div>
         </div>
 
         <div class="aside-section">
           <h2>Education</h2>
           <div class="edu-item">
-            <div class="deg">MSc, Digital Business</div>
+            <div class="deg">MSc, Business Administration — Digital Business</div>
             <div class="school">University of Amsterdam</div>
             <div class="dates">Sep 2024 – Aug 2025</div>
           </div>
           <div class="edu-item">
-            <div class="deg">MSc, IT Management</div>
+            <div class="deg">MSc, IT Management — Information Systems</div>
             <div class="school">University of Tehran</div>
             <div class="dates">Sep 2019 – Aug 2023</div>
           </div>
           <div class="edu-item">
-            <div class="deg">BSc, Business Administration</div>
+            <div class="deg">BSc, Business Administration — Trade &amp; Commerce</div>
             <div class="school">University of Tehran</div>
             <div class="dates">Sep 2015 – Aug 2019</div>
           </div>
@@ -524,33 +499,52 @@
           <h2>Awards</h2>
           <div class="award-item">
             <span class="a-name">Business Talent Fund Scholarship</span>
-            <span class="a-meta">University of Amsterdam, Aug 2024</span>
+            <span class="a-meta">University of Amsterdam · Aug 2024</span>
           </div>
           <div class="award-item">
             <span class="a-name">Direct Entry Master's Talent Award</span>
-            <span class="a-meta">University of Tehran, Sep 2019</span>
+            <span class="a-meta">University of Tehran · Sep 2019</span>
           </div>
         </div>
 
         <div class="aside-section">
           <h2>Languages</h2>
           <div class="lang-item"><span>English</span><span class="lvl">Professional</span></div>
-          <div class="lang-item"><span>Dutch</span><span class="lvl">A2</span></div>
+          <div class="lang-item"><span>Dutch</span><span class="lvl">A2 · Improving</span></div>
           <div class="lang-item"><span>Farsi</span><span class="lvl">Native</span></div>
         </div>
       </aside>
 
       <main>
-        <h2>Experience</h2>
+        <h2>Selected Project / Showcase</h2>
+        <div class="exp-list" style="margin-bottom: 3.5mm;">
+          <div class="exp-entry">
+            <div class="exp-head">
+              <div class="exp-role">System &amp; Workflow Designer · <a href="https://github.com/Dutch-panda/BuildRelay" target="_blank" class="org-link" style="color: var(--accent); font-weight: 600; text-decoration: none;">BuildRelay ↗</a><span class="current-tag">Showcase</span></div>
+              <div class="exp-dates">Oct 2026 – Present</div>
+            </div>
+            <div class="exp-meta">Independent Project / Portfolio Showcase · Agent-Assisted Implementation</div>
+            <ul class="bullets">
+              <li>Designed an end-to-end multiagent workflow turning natural-language briefs into structured software deliverables, with human review at phase completion.</li>
+              <li>Defined system behavior, quality expectations, context persistence, linked result records, and SQLite logging; refined the design through observed issues.</li>
+              <li>Directed agent-assisted implementation and reviewed phase completion; agents performed most of the coding.</li>
+              <li>Tested workflow on an offline Python Flask app generating question-and-answer PDFs from form responses.</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2>Experience &amp; Activities</h2>
         <div class="exp-list">
           <div class="exp-entry">
             <div class="exp-head">
-              <div class="exp-role">Business Analyst · <span class="org">Pulse Pilates</span><span class="current-tag">Current</span></div>
+              <div class="exp-role">Independent Business Analyst / Consultant · <span class="org">Pulse Pilates</span><span class="current-tag">Current</span></div>
               <div class="exp-dates">Dec 2025 – Present</div>
             </div>
             <div class="exp-meta">Muscat, Oman</div>
             <ul class="bullets">
-              <li>Conducted requirement and market analysis for opening a coffee shop within the Pilates studio, including operational workflow and menu development.</li>
+              <li>Compared booking-system options and planned and staged the studio's migration, including customer communication and risk mitigation; supported a completed migration and subsequent adjustments.</li>
+              <li>Contributed business analysis to an in-studio cafe initiative, including requirements and market analysis, operational workflow and menu development.</li>
+              <li>Advised on recruitment and personnel-management needs as part of the studio's business development initiative.</li>
             </ul>
           </div>
 
@@ -567,25 +561,12 @@
 
           <div class="exp-entry">
             <div class="exp-head">
-              <div class="exp-role">Business Data Analyst · <span class="org">ZarinPal</span></div>
-              <div class="exp-dates">Jul 2023 – Aug 2025</div>
-            </div>
-            <div class="exp-meta">Fintech</div>
-            <ul class="bullets">
-              <li>Analyzed transaction and user behavior data to identify growth opportunities and develop customer acquisition and retention strategies with product and marketing teams.</li>
-              <li>Built Power BI dashboards tracking key KPIs (transaction volume, conversion rates, engagement) and conducted cohort, funnel, and segmentation analyses.</li>
-              <li>Supported strategic decisions through ad-hoc SQL and Python analyses, optimizing payment processes and risk monitoring systems.</li>
-            </ul>
-          </div>
-
-          <div class="exp-entry">
-            <div class="exp-head">
-              <div class="exp-role">Business Intelligence Researcher · <span class="org">Big Data Analytics Group</span><span class="current-tag">Current</span></div>
+              <div class="exp-role">Independent Research Participant · <span class="org">Big Data Analytics Group</span><span class="current-tag">Current</span></div>
               <div class="exp-dates">Feb 2023 – Present</div>
             </div>
-            <div class="exp-meta">Consulting</div>
+            <div class="exp-meta">Research &amp; Professional Activities</div>
             <ul class="bullets">
-              <li>Researched emerging trends in big data and BI, developing case-based frameworks and actionable recommendations that drive strategic advantage for decision-makers.</li>
+              <li>Research and write book and article summaries, tool introductions, and analyses of data- and AI-driven business models for executives and students.</li>
             </ul>
           </div>
 
@@ -596,8 +577,8 @@
             </div>
             <div class="exp-meta">Consulting</div>
             <ul class="bullets">
-              <li>Analyzed business processes and performance metrics to identify improvement areas and developed data-driven recommendations enhancing operational efficiency.</li>
-              <li>Designed dashboards and KPI reports, contributing to scalable analytical frameworks for process mapping, benchmarking, and performance evaluation.</li>
+              <li>Analyzed business processes and performance metrics to identify improvement areas, developing data-driven recommendations for process mapping and workflow evaluation.</li>
+              <li>Designed dashboards and KPI reports, contributing to scalable analytical frameworks for benchmarking and performance evaluation.</li>
             </ul>
           </div>
 

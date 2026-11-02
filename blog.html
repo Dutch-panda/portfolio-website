@@ -3,29 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Field Notes &amp; Blog — Ehsan Negahdar</title>
+    <title>Field Notes &amp; Dispatches — Ehsan Negahdar</title>
     <meta
       name="description"
-      content="Dispatches and field notes on Systems Architecture, Process Optimization, Data Analytics, and Agentic AI by Ehsan Negahdar."
+      content="Field notes and dispatches on AI Solution Design, Systems Architecture, and Process Optimization by Ehsan Negahdar."
     />
     <meta name="author" content="Ehsan Negahdar" />
     <meta name="theme-color" content="#0b0b0d" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Field Notes &amp; Blog — Ehsan Negahdar" />
+    <meta property="og:title" content="Field Notes &amp; Dispatches — Ehsan Negahdar" />
     <meta
       property="og:description"
-      content="Dispatches and field notes on Systems Architecture, Process Optimization, Data Analytics, and Agentic AI by Ehsan Negahdar."
+      content="Field notes and dispatches on AI Solution Design, Systems Architecture, and Process Optimization by Ehsan Negahdar."
     />
     <meta property="og:image" content="./assets/logo-git-e.svg" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Field Notes &amp; Blog — Ehsan Negahdar" />
+    <meta name="twitter:title" content="Field Notes &amp; Dispatches — Ehsan Negahdar" />
     <meta
       name="twitter:description"
-      content="Dispatches and field notes on Systems Architecture, Process Optimization, Data Analytics, and Agentic AI by Ehsan Negahdar."
+      content="Field notes and dispatches on AI Solution Design, Systems Architecture, and Process Optimization by Ehsan Negahdar."
     />
     <meta name="twitter:image" content="./assets/logo-git-e.svg" />
 
@@ -130,111 +130,16 @@
       </section>
 
       <div id="blog-full-list" class="blog-full-list">
-        <!-- Pre-rendered for instant paint & progressive enhancement (UX-07, UX-11) -->
-        <article class="stage-box blog-article-box" id="agentic-handoffs">
+        <div class="stage-box blog-empty-box" style="padding: 48px; text-align: center;">
           <span class="box-corner-bl" aria-hidden="true"></span>
           <span class="box-corner-br" aria-hidden="true"></span>
-          <div class="blog-meta-row">
-            <span class="blog-category">Agentic Workflows</span>
-            <span class="blog-meta-sep">·</span>
-            <span class="blog-date">Oct 18, 2026</span>
-            <span class="blog-meta-sep">·</span>
-            <span class="read-time-pill">Field Note · 2 min read</span>
-            <div class="blog-meta-actions">
-              <button
-                type="button"
-                class="blog-share-btn"
-                data-permalink="agentic-handoffs"
-                title="Copy permalink to this field note"
-                aria-label="Copy link to Why Most Agentic Workflows Fail at the Handoff"
-              >
-                <span class="share-icon" aria-hidden="true">#</span> Copy Link
-              </button>
-            </div>
-          </div>
-          <h2 class="blog-title">
-            <a href="#agentic-handoffs" class="blog-title-anchor" title="Permalink to this section">
-              Why Most Agentic Workflows Fail at the Handoff (And How to Fix the Architecture)
-            </a>
-          </h2>
-          <p class="blog-body-p">
-            When teams first prototype an agentic workflow, they usually focus on prompt engineering or model selection. Yet in production environments—whether coordinating engineering tasks in BuildRelay, triaging operational tickets, or validating financial data—failures almost always happen at the boundaries between steps.
+          <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 8px;">
+            Articles coming soon.
           </p>
-          <p class="blog-body-p">
-            In BuildRelay, we solved this by separating responsibilities across four explicit roles: a Coordinator (Natasha) that produces a typed task brief and selects the route, a Researcher (Odin) that queries local vault context, an Architect (Taghi) that defines ordered execution phases with explicit validation commands, and an Implementer (Meti) that executes inside a Docker sandbox.
+          <p style="font-size: 0.88rem; color: var(--text-muted);">
+            Field notes and dispatches on systems design, process analysis, and practical AI workflows are being prepared.
           </p>
-          <p class="blog-body-p">
-            Crucially, a reported success is automatically downgraded to failure if any phase remains unvalidated. The engineering trade-off is deliberate: typed Pydantic contracts and Docker sandboxing introduce startup latency and require upfront schema design, but they systematically eliminate silent state corruption, unverified tool claims, and non-reproducible outcomes.
-          </p>
-        </article>
-
-        <article class="stage-box blog-article-box" id="diagnosing-bottlenecks">
-          <span class="box-corner-bl" aria-hidden="true"></span>
-          <span class="box-corner-br" aria-hidden="true"></span>
-          <div class="blog-meta-row">
-            <span class="blog-category">Process &amp; Strategy</span>
-            <span class="blog-meta-sep">·</span>
-            <span class="blog-date">Oct 04, 2026</span>
-            <span class="blog-meta-sep">·</span>
-            <span class="read-time-pill">Field Note · 1 min read</span>
-            <div class="blog-meta-actions">
-              <button
-                type="button"
-                class="blog-share-btn"
-                data-permalink="diagnosing-bottlenecks"
-                title="Copy permalink to this field note"
-                aria-label="Copy link to Untangling Complexity"
-              >
-                <span class="share-icon" aria-hidden="true">#</span> Copy Link
-              </button>
-            </div>
-          </div>
-          <h2 class="blog-title">
-            <a href="#diagnosing-bottlenecks" class="blog-title-anchor" title="Permalink to this section">
-              Untangling Complexity: A Blueprint for Diagnosing Operational Bottlenecks
-            </a>
-          </h2>
-          <p class="blog-body-p">
-            Every growing organization accumulates invisible process drag: manual spreadsheet handoffs, disconnected CRM definitions, and KPIs that measure activity rather than outcomes.
-          </p>
-          <p class="blog-body-p">
-            Effective problem-solving starts before writing a single line of SQL or DAX. First, map the decision flow: who needs what signal, at what latency, to make a high-consequence choice? Only then do we instrument the funnel, clean the underlying ETL pipeline, and surface a focused dashboard that drives action.
-          </p>
-        </article>
-
-        <article class="stage-box blog-article-box" id="messy-data-to-conviction">
-          <span class="box-corner-bl" aria-hidden="true"></span>
-          <span class="box-corner-br" aria-hidden="true"></span>
-          <div class="blog-meta-row">
-            <span class="blog-category">Data &amp; Decisions</span>
-            <span class="blog-meta-sep">·</span>
-            <span class="blog-date">Sep 19, 2026</span>
-            <span class="blog-meta-sep">·</span>
-            <span class="read-time-pill">Field Note · 1 min read</span>
-            <div class="blog-meta-actions">
-              <button
-                type="button"
-                class="blog-share-btn"
-                data-permalink="messy-data-to-conviction"
-                title="Copy permalink to this field note"
-                aria-label="Copy link to From Messy CRM &amp; Transaction Logs to Executive Conviction"
-              >
-                <span class="share-icon" aria-hidden="true">#</span> Copy Link
-              </button>
-            </div>
-          </div>
-          <h2 class="blog-title">
-            <a href="#messy-data-to-conviction" class="blog-title-anchor" title="Permalink to this section">
-              From Messy CRM &amp; Transaction Logs to Executive Conviction
-            </a>
-          </h2>
-          <p class="blog-body-p">
-            Raw transactional data tells you what happened yesterday; cohort and segmentation models tell you why behavior is shifting and where to intervene next.
-          </p>
-          <p class="blog-body-p">
-            Across fintech payment gateways and telecom CRM systems, the highest-leverage insights come from pairing clean data engineering (ETL validation, schema discipline) with clear visual storytelling in Power BI and Python.
-          </p>
-        </article>
+        </div>
       </div>
     </main>
 
