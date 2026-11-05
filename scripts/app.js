@@ -119,6 +119,37 @@
   }
 
   /* --------------------------------------------------------------------------
+   * 2b. Hero Terminal Name Typewriter (One-Time Dynamic Execution)
+   * -------------------------------------------------------------------------- */
+  const heroBadge = document.getElementById('hero-name-badge');
+  if (heroBadge) {
+    const textToType = heroBadge.getAttribute('data-text') || 'EHSAN NEGAHDAR';
+    const typedTarget = heroBadge.querySelector('.typed-name');
+    const isReduced = () =>
+      window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (typedTarget) {
+      if (isReduced()) {
+        typedTarget.textContent = textToType;
+      } else {
+        typedTarget.textContent = '';
+        let charIdx = 0;
+        // Brief initial pause so the empty terminal box and cursor are visible first
+        setTimeout(() => {
+          const timer = setInterval(() => {
+            if (charIdx < textToType.length) {
+              typedTarget.textContent += textToType.charAt(charIdx);
+              charIdx++;
+            } else {
+              clearInterval(timer);
+            }
+          }, 65);
+        }, 320);
+      }
+    }
+  }
+
+  /* --------------------------------------------------------------------------
    * 3. Hardware-Accelerated Stage Transforms (Home Page Only)
    * -------------------------------------------------------------------------- */
   const stages = Array.from(document.querySelectorAll('.stage-section'));
@@ -832,6 +863,70 @@
         </div>
       `;
     } else {
+      blogFullList.innerHTML = data.blogPosts
+        .map(
+          (post) => `
+        <article class="stage-box blog-article-box" id="${post.id}">
+          <span class="box-corner-bl" aria-hidden="true"></span>
+          <span class="box-corner-br" aria-hidden="true"></span>
+
+          <div class="blog-meta-row">
+            <span class="blog-category">${escapeHtml(post.category)}</span>
+            <span class="blog-meta-sep">•</span>
+            <span class="blog-date">${escapeHtml(post.date)}</span>
+            <span class="blog-meta-sep">•</span>
+            <span class="read-time-pill">${escapeHtml(post.readTime)}</span>
+            ${post.badge ? `<span class="blog-meta-sep">•</span><span class="read-time-pill">${escapeHtml(post.badge)}</span>` : ''}
+
+            <div class="blog-meta-actions">
+              <button
+                type="button"
+                class="blog-share-btn"
+                data-permalink="${post.id}"
+                aria-label="Copy direct permalink to clipboard"
+              >
+                <span class="share-icon" aria-hidden="true">🔗</span> Copy link
+              </button>
+            </div>
+          </div>
+
+          <h2 class="blog-title">
+            <a href="${post.slug}" class="blog-title-anchor">
+              ${escapeHtml(post.title)}
+            </a>
+          </h2>
+
+          <p class="blog-body-p">
+            ${escapeHtml(post.summary)}
+          </p>
+
+          ${
+            post.highlights && post.highlights.length
+              ? `
+            <ul class="post-bullets" style="margin: 14px 0 20px;">
+              ${post.highlights.map((h) => `<li>${escapeHtml(h)}</li>`).join('')}
+            </ul>
+          `
+              : ''
+          }
+
+          <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-top: 20px;">
+            <a href="${post.slug}" class="drawer-action-btn">
+              Read Case Study →
+            </a>
+            <a
+              href="https://github.com/Dutch-panda/BuildRelay"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="stage-step-btn"
+            >
+              GitHub Repository ↗
+            </a>
+          </div>
+        </article>
+      `
+        )
+        .join('');
       initBlogShareButtons();
     }
   }

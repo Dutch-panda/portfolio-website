@@ -23,7 +23,7 @@ yarn-error.log*
 # Local scratch / test files
 scratch/
 
-# Audit and Review Reports
+# Audit, Evidence, and Planning Reports
 audit-report.md
 *audit*.md
 *audit*.py
@@ -31,3 +31,12 @@ audit-report.md
 *-evidence.json
 temp-web-improvement.md
 *handoff*.md
+
+# Large research slide decks, internal drafts & references
+content/**/*.pdf
+*.pdf
+!assets/Ehsan-Negahdar-CV.pdf
+*buildrelay-blogpost*.md
+*buildRelay-blogpost*.md
+*revised*.html
+*Governed*.png

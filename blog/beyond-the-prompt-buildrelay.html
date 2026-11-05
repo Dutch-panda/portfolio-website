@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en" data-article-theme="navy">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Designing BuildRelay: Requirements, Review and Human Judgment in an Agent Workflow — Ehsan Negahdar</title>
+    <meta
+      name="description"
+      content="Design notes on an experimental agent workflow: clarifying requirements, separating responsibilities and combining automated checks with human review."
+    />
+    <meta name="author" content="Ehsan Negahdar" />
+    <meta name="theme-color" content="#0b0b0d" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Designing BuildRelay: Requirements, Review and Human Judgment in an Agent Workflow" />
+    <meta
+      property="og:description"
+      content="Design notes on an experimental agent workflow: clarifying requirements, separating responsibilities and combining automated checks with human review."
+    />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Designing BuildRelay: Requirements, Review and Human Judgment in an Agent Workflow" />
+    <meta
+      name="twitter:description"
+      content="Design notes on an experimental agent workflow: clarifying requirements, separating responsibilities and combining automated checks with human review."
+    />
+
+    <link rel="icon" type="image/svg+xml" href="../assets/logo-git-e.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles/main.css" />
+  </head>
+  <body data-page="blog-post">
+    <!-- Accessibility Skip to Main Content Link -->
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
+    <!-- Full-Viewport Architectural Blueprint Grid -->
+    <div class="ambient-grid" aria-hidden="true">
+      <div class="crosshair-mark ch-top" aria-hidden="true"></div>
+      <div class="crosshair-mark ch-left" aria-hidden="true"></div>
+      <div class="crosshair-mark ch-right" aria-hidden="true"></div>
+      <div class="crosshair-mark ch-bottom" aria-hidden="true"></div>
+    </div>
+
+    <!-- PERSISTENT TOP HEADER -->
+    <header class="site-header">
+      <div class="header-inner">
+        <a
+          href="../index.html"
+          class="brand-logo-btn"
+          aria-label="Home — Ehsan Negahdar"
+          title="Back to Home"
+        >
+          <img
+            src="../assets/logo-git-e.svg"
+            alt="Monochrome Git-Branch E Logo"
+            class="brand-logo-svg"
+          />
+        </a>
+
+        <button
+          type="button"
+          class="mobile-nav-toggle"
+          id="mobile-nav-toggle"
+          aria-expanded="false"
+          aria-controls="site-header-nav"
+          aria-label="Toggle navigation menu"
+        >
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+
+        <nav class="header-nav" id="site-header-nav" aria-label="Primary Navigation">
+          <a href="../projects.html" class="nav-link">Projects</a>
+          <a href="../cv.html" class="nav-link">CV</a>
+          <a href="../blog.html" class="nav-link active">Blog</a>
+          <a
+            href="https://github.com/Dutch-panda"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="nav-link"
+          >
+            GitHub ↗
+          </a>
+          <a
+            href="https://www.linkedin.com/in/ehsan-negahdar/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="nav-link"
+          >
+            LinkedIn ↗
+          </a>
+          <a href="../index.html#stage-hero" class="availability-pill" title="Send a direct note">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span>Available</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ARTICLE MAIN CONTAINER -->
+    <main class="subpage-main" id="main-content">
+      <div class="subpage-ActionBar">
+        <a href="../blog.html" class="stage-step-btn">← Back to Field Notes</a>
+        <div class="subpage-actions-right">
+          <div class="theme-switcher-group" role="group" aria-label="Blog theme selection">
+            <span class="theme-switcher-label">THEME:</span>
+            <button type="button" class="theme-btn" data-theme="default" title="Carbon Dark with High-Contrast Text">High-Contrast</button>
+            <button type="button" class="theme-btn active" data-theme="navy" title="VS Code Cobalt Navy Blue (Default)">Cobalt Navy</button>
+          </div>
+          <a
+            href="https://github.com/Dutch-panda/BuildRelay"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="stage-step-btn"
+          >
+            GitHub ↗
+          </a>
+          <a
+            href="https://dutch-panda.github.io/BuildRelay/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="drawer-action-btn"
+          >
+            Docs ↗
+          </a>
+        </div>
+      </div>
+
+      <article class="stage-box blog-post-article">
+        <span class="box-corner-bl" aria-hidden="true"></span>
+        <span class="box-corner-br" aria-hidden="true"></span>
+        <header class="blog-post-header">
+          <div class="blog-meta-row">
+            <span class="blog-category">Design Notes // Experimental Project</span>
+            <span class="blog-meta-sep">•</span>
+            <span class="read-time-pill">BuildRelay</span>
+          </div>
+          <h1 class="blog-post-h1">Designing BuildRelay: Requirements, Review and Human Judgment in an Agent Workflow</h1>
+          <div class="post-attribution-strip">
+            <div class="attribution-item"><span class="attrib-label">SYSTEM &amp; WORKFLOW DESIGN</span><span class="attrib-val">Ehsan Negahdar</span></div>
+            <div class="attribution-item"><span class="attrib-label">IMPLEMENTATION</span><span class="attrib-val">Primarily AI coding agents, under my direction and review</span></div>
+            <div class="attribution-item"><span class="attrib-label">STATUS</span><span class="attrib-val">Experimental, MIT-licensed portfolio project</span></div>
+          </div>
+        </header>
+
+        <div class="callout-card">
+          <div class="callout-heading">The design question</div>
+          <p class="blog-body-p callout-p">Getting agents to produce code and getting the application I intended were different problems. BuildRelay is my experiment in making requirements, responsibilities and review points explicit in a multiagent software-development workflow.</p>
+        </div>
+
+        <section class="post-section" aria-labelledby="starting-point">
+          <h2 class="post-h2" id="starting-point">1. Start with the work, not just the model</h2>
+          <p class="blog-body-p">While developing BuildRelay, I noticed that leaving overall quality expectations implicit could take the result away from the system I wanted. Asking for a working app was not enough to resolve what it should do, how a user would interact with it, or which assumptions needed checking.</p>
+          <p class="blog-body-p">I approached this through business analysis and system design: clarify the intended result, identify important unknowns, and decide what should happen before work moves to the next stage. Choosing a capable model matters, but it does not make those decisions for the designer.</p>
+          <p class="blog-body-p">BuildRelay is a local Python CLI for planning, implementing and checking bounded software tasks. It remains an experimental portfolio project, not evidence of production reliability or organization-wide productivity gains.</p>
+        </section>
+
+        <section class="post-section" aria-labelledby="process-lens">
+          <h2 class="post-h2" id="process-lens">2. A process-design lens</h2>
+          <p class="blog-body-p">Mitchell Troyanovsky's <a href="https://www.youtube.com/watch?v=JGtkTjn4120" target="_blank" rel="noopener noreferrer">talk on process supervision</a> offers a useful way to examine this problem. He distinguishes a competency gap—the complexity users take on when managing an agent's skills, memory and context—from a process gap: individually customized working methods do not automatically meet shared organizational expectations.<a href="#source-1" aria-label="Source 1" class="citation-ref">[1]</a></p>
+          <p class="blog-body-p">He also discusses behavior specifications: stating important expectations about how an agent should work, then examining whether those behaviors occur during a run. That adds a different signal from checking only the final answer; it does not make outcome evaluation unnecessary.<a href="#source-1" aria-label="Source 1" class="citation-ref">[1]</a></p>
+          <p class="blog-body-p">For me, the connection is a design question: which expectations belong in the workflow, rather than being left for the user to restate? BuildRelay explores that question through clarification, explicit instructions and review. I am not claiming it implements Basis's behavior-specification approach or provides the same evaluation infrastructure.</p>
+          <p class="blog-body-p">There is also a limit to the organizational analogy. A consistent process can still be wrong. Rules need to be tested against results and revised when they add friction or fail to address the actual need.</p>
+        </section>
+
+        <section class="post-section" aria-labelledby="requirements">
+          <h2 class="post-h2" id="requirements">3. Make expectations explicit and unknowns discussable</h2>
+          <p class="blog-body-p">I made two changes to address the gap between an initial request and a useful deliverable.</p>
+          <p class="blog-body-p">First, I defined shared expectations for the leads: focus on an implemented, working prototype that meets the user's needs, and clarify important unknowns instead of silently filling them in. This is an instruction to guide behavior, not a guarantee that an agent will never make an assumption.</p>
+          <p class="blog-body-p">Second, I used structured clarification interviews. The leads propose development and implementation options based on the problem, so the user can make choices without writing a complete technical specification upfront.</p>
+          <p class="blog-body-p">Consider a hypothetical request for a form-to-PDF utility. Should responses be retained after export? Must the app run without an internet connection? Who will use it, and how will they start it? These questions change the design. They are an illustrative example here, not a transcript of a recorded BuildRelay interview.</p>
+          <p class="blog-body-p">Offering options can make a decision easier, but the options can also frame the problem too narrowly. The user still needs room to reject them, explain a constraint, or change direction. More questions are not automatically better; clarification should resolve consequential uncertainty rather than become an obstacle to implementation.</p>
+        </section>
+
+        <section class="post-section" aria-labelledby="roles">
+          <h2 class="post-h2" id="roles">4. Separate responsibilities without hiding the handoffs</h2>
+          <p class="blog-body-p">The documented workflow has four development roles, with optional supervision from Dana. They are responsibilities within a routed workflow, not five mandatory assembly-line stages.<a href="#source-2" aria-label="Source 2" class="citation-ref">[2]</a></p>
+          <ul class="post-bullets">
+            <li><strong>Natasha, coordinator:</strong> clarifies intent, prepares a task brief and selects an entry route.</li>
+            <li><strong>Odin, researcher:</strong> gathers available vault context, web-search snippets and package metadata when research is part of the route.</li>
+            <li><strong>Taghi, architect:</strong> develops technical and UI specifications with implementation phases and proposed checks.</li>
+            <li><strong>Meti, implementer:</strong> coordinates code implementation through Docker commands and records phase-check results.</li>
+            <li><strong>Dana, optional quality supervisor:</strong> critiques supplied deliverables at stage boundaries, with advisory or autonomous-steering modes.</li>
+          </ul>
+          <div class="terminal-block" aria-label="Conceptual routing summary">
+            <pre><code>Natasha selects the route
+  Research-led build: Odin → Taghi → Meti
+  Design-led build:   Taghi → Meti
+  Direct implementation:     Meti
+  Research-only request: Odin, then stop
+
+Dana: optional supervision at stage boundaries
+Human review: decisions and delivery in interactive use</code></pre>
+          </div>
+          <p class="blog-body-p">This is a simplified map of documented responsibilities, not a trace of a particular run. An anti-simulation rule asks the implementation to provide functional behavior rather than fake flows; it is not a separate agent. Meti is the implementer, not the human reviewer.<a href="#source-2" aria-label="Source 2" class="citation-ref">[2]</a></p>
+          <p class="blog-body-p">Separating roles makes responsibilities easier to inspect, but also creates handoffs where context can be lost. Typed outputs and saved artifacts help structure those exchanges. They constrain the representation of work; they do not make the reasoning deterministic or the content correct.</p>
+        </section>
+
+        <section class="post-section" aria-labelledby="review">
+          <h2 class="post-h2" id="review">5. Treat review as several kinds of evidence</h2>
+          <p class="blog-body-p">I added Dana because expectations written in prompts were not the only review mechanism I wanted. An automated reviewer can offer another perspective on intermediate work. It can also miss a problem or repeat the same mistaken assumption, so its judgment needs to stay distinguishable from executed checks.</p>
+          <div class="table-responsive-container">
+            <table class="data-table">
+              <caption>Different quality signals in the documented workflow</caption>
+              <thead><tr><th scope="col">Signal</th><th scope="col">What it provides</th><th scope="col">What it does not establish</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Phase-check results</th><td>Recorded commands, exit statuses and available output.</td><td>That the chosen tests cover the user's needs or every failure case.</td></tr>
+                <tr><th scope="row">Optional Dana critique</th><td>Model-based feedback on supplied stage deliverables and context.</td><td>An independent security audit, complete code inspection or proof that every finding was fixed.</td></tr>
+                <tr><th scope="row">Static evaluation harness</th><td>Checks for selected file and text patterns.</td><td>Measured test coverage, verified usability or correctness.</td></tr>
+                <tr><th scope="row">Human review</th><td>A person's assessment of scope, trade-offs, artifacts and acceptance.</td><td>Freedom from error, or a reason to skip implementation review.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="blog-body-p">Dana and the static evaluation harness are separate mechanisms. Supervision is optional and off by default. Interactive use includes review and approval opportunities; headless execution can accept defaults automatically. It would be misleading to describe every run as requiring human sign-off.<a href="#source-2" aria-label="Source 2" class="citation-ref">[2]</a><a href="#source-3" aria-label="Source 3" class="citation-ref">[3]</a></p>
+          <p class="blog-body-p">The developer still has to decide how much scrutiny a change requires. Reviewing the architecture does not remove the need to inspect code, test behavior or understand the consequences of running it.</p>
+        </section>
+
+        <section class="post-section" aria-labelledby="example">
+          <h2 class="post-h2" id="example">6. One bounded test, not a general performance claim</h2>
+          <p class="blog-body-p">In one initial test, I gave the workflow a short natural-language request for an offline Python Flask app. The resulting app collected responses through an HTML form and produced a PDF containing the questions and answers.</p>
+          <p class="blog-body-p">That was a useful output to inspect, but it was one task. It did not establish that the workflow would handle more complex applications reliably, or that it improved an organization's performance. The app's offline operation also says nothing by itself about whether the workflow that generated it used remote model services.</p>
+          <p class="blog-body-p">This example is my account of an initial test, not a reproducible benchmark presented here. I am not attributing a particular defect discovery or repair to Dana without the supporting run record. A fuller case study needs the original request, artifacts, executed checks and any failures or revisions.</p>
+        </section>
+
+        <section class="post-section" aria-labelledby="limits">
+          <h2 class="post-h2" id="limits">7. What I would carry into the next design</h2>
+          <p class="blog-body-p">My contribution to BuildRelay has been designing its structure, specifying expected behavior and refining the workflow as issues emerged. AI coding agents wrote most of the implementation under my direction and review.</p>
+          <p class="blog-body-p">The project also makes the limits of the approach important. More stages can increase handoff overhead. Clarification and model review take time and can incur costs. Saved checkpoints support continuation, but do not guarantee an interrupted command ran exactly once. Docker execution and generated host-side verification have different boundaries; neither should be treated as a blanket assurance of safety.<a href="#source-4" aria-label="Source 4" class="citation-ref">[4]</a></p>
+          <p class="blog-body-p">For a small, well-understood edit, a simpler coding session may be more appropriate. The point of this experiment is to explore which structure helps with a particular task, not to assume more agents mean a better solution.</p>
+          <p class="blog-body-p">For anyone designing a similar workflow, I suggest starting with four questions:</p>
+          <ul class="post-bullets">
+            <li>What working result would meet the user's need?</li>
+            <li>Which unknowns could materially change the design?</li>
+            <li>Who can decide, approve, stop or revise the work?</li>
+            <li>What evidence will be inspected before accepting the result?</li>
+          </ul>
+          <p class="blog-body-p">These are the questions I want my solution-design work to make visible. BuildRelay is one practical experiment in answering them, and I would welcome feedback on its clarification steps, handoffs and review boundaries.</p>
+        </section>
+
+        <section class="post-section" aria-labelledby="sources">
+          <h2 class="post-h2" id="sources">Sources and project references</h2>
+          <p class="blog-body-p">The talk provides an external perspective; the project documentation describes intended and implemented mechanisms, not independent evidence of their effectiveness. The prototype example and design decisions above are my reported experience.</p>
+          <ol class="post-bullets sources-list">
+            <li id="source-1">Mitchell Troyanovsky, <a href="https://www.youtube.com/watch?v=JGtkTjn4120" target="_blank" rel="noopener noreferrer">AI Engineer talk on process supervision</a>. See the <a href="https://ai.engineer/reading/nyc-2026/transcripts/oct14-mitchell-troyanovsky-process.md" target="_blank" rel="noopener noreferrer">organizer's transcript</a>. Its timestamps refer to the full conference recording, not the standalone video.</li>
+            <li id="source-2">BuildRelay, <a href="https://github.com/Dutch-panda/BuildRelay/blob/main/docs/content/workflow.md" target="_blank" rel="noopener noreferrer">Workflow and alignment</a>.</li>
+            <li id="source-3">BuildRelay, <a href="https://github.com/Dutch-panda/BuildRelay/blob/main/docs/content/quality.md" target="_blank" rel="noopener noreferrer">Supervision and evaluation</a>.</li>
+            <li id="source-4">BuildRelay, <a href="https://github.com/Dutch-panda/BuildRelay/blob/main/README.md" target="_blank" rel="noopener noreferrer">README and execution boundaries</a>.</li>
+          </ol>
+        </section>
+
+        <footer class="blog-post-footer">
+          <div class="post-footer-box">
+            <h3 class="footer-box-title">Explore BuildRelay</h3>
+            <p class="blog-body-p">BuildRelay is an experimental developer tool released under the <a href="https://github.com/Dutch-panda/BuildRelay/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>. Review generated code, checks and operational boundaries before relying on its output.</p>
+            <div class="footer-links-row">
+              <a href="https://github.com/Dutch-panda/BuildRelay" target="_blank" rel="noopener noreferrer" class="drawer-action-btn">GitHub repository ↗</a>
+              <a href="https://dutch-panda.github.io/BuildRelay/" target="_blank" rel="noopener noreferrer" class="stage-step-btn">Documentation ↗</a>
+              <a href="../blog.html" class="stage-step-btn">← All articles</a>
+            </div>
+          </div>
+        </footer>
+      </article>
+    </main>
+
+    <!-- PERSISTENT BOTTOM STATUS TICKER -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <span class="footer-owner-credit">© 2026 <strong class="footer-owner-name">Ehsan Negahdar</strong> · Systems &amp; Solution Design</span>
+          <span class="footer-sep">|</span>
+          <span class="footer-label">Latest Updates — Nov 2026</span>
+          <span class="footer-sep">|</span>
+          <button
+            type="button"
+            id="footer-dispatch-btn"
+            class="footer-dispatch-btn"
+            title="Click to cycle recent dispatches"
+          ></button>
+        </div>
+
+        <div class="footer-right">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span>System status: <strong class="status-clean">Clean</strong></span>
+          <button type="button" class="footer-contact-trigger" data-copy-email>
+            Direct contact
+          </button>
+        </div>
+      </div>
+    </footer>
+
+    <div id="toast-banner" class="toast-banner" role="status" aria-live="polite"></div>
+
+    <script src="../scripts/data.js"></script>
+    <script src="../scripts/app.js"></script>
+    <script>
+      // Interactive Theme Switcher for Article Reading
+      (function() {
+        const buttons = document.querySelectorAll('.theme-btn');
+        const root = document.documentElement;
+        
+        function applyTheme(theme) {
+          root.removeAttribute('data-article-theme');
+          // For individual post, navy is default unless explicitly set to default (high-contrast)
+          if (theme === 'navy') {
+            root.setAttribute('data-article-theme', 'navy');
+          } else if (theme === 'default') {
+            // explicit high-contrast
+          } else {
+            // fallback default for blog post is navy
+            root.setAttribute('data-article-theme', 'navy');
+            theme = 'navy';
+          }
+          buttons.forEach(btn => {
+            btn.classList.toggle('active', btn.getAttribute('data-theme') === theme);
+          });
+          try {
+            localStorage.setItem('preferred-post-theme', theme);
+          } catch (e) {}
+        }
+
+        buttons.forEach(btn => {
+          btn.addEventListener('click', () => {
+            const theme = btn.getAttribute('data-theme');
+            applyTheme(theme);
+          });
+        });
+
+        // Initialize: default is cobalt navy unless user previously chose otherwise
+        try {
+          const saved = localStorage.getItem('preferred-post-theme');
+          applyTheme(saved || 'navy');
+        } catch (e) {
+          applyTheme('navy');
+        }
+      })();
+    </script>
+  </body>
+</html>

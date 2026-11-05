@@ -111,7 +111,14 @@
     <main class="subpage-main" id="main-content">
       <div class="subpage-ActionBar">
         <a href="./index.html" class="stage-step-btn">← Back to Overview</a>
-        <span class="section-step-badge">FIELD NOTES &amp; DISPATCHES // OCT 2026</span>
+        <div class="subpage-actions-right">
+          <div class="theme-switcher-group" role="group" aria-label="Blog theme selection">
+            <span class="theme-switcher-label">THEME:</span>
+            <button type="button" class="theme-btn active" data-theme="default" title="Carbon Dark with High-Contrast Text">High-Contrast</button>
+            <button type="button" class="theme-btn" data-theme="navy" title="VS Code Cobalt Navy Blue">Cobalt Navy</button>
+          </div>
+          <span class="section-step-badge">FIELD NOTES &amp; DISPATCHES // NOV 2026</span>
+        </div>
       </div>
 
       <section class="stage-box subpage-header-box">
@@ -147,7 +154,9 @@
     <footer class="site-footer">
       <div class="footer-inner">
         <div class="footer-left">
-          <span class="footer-label">Latest Updates — Oct 2026</span>
+          <span class="footer-owner-credit">© 2026 <strong class="footer-owner-name">Ehsan Negahdar</strong> · Systems &amp; Solution Design</span>
+          <span class="footer-sep">|</span>
+          <span class="footer-label">Latest Updates — Nov 2026</span>
           <span class="footer-sep">|</span>
           <button
             type="button"
@@ -171,5 +180,37 @@
 
     <script src="./scripts/data.js"></script>
     <script src="./scripts/app.js"></script>
+    <script>
+      // Blog Theme Switcher
+      (function() {
+        const buttons = document.querySelectorAll('.theme-btn');
+        const root = document.documentElement;
+        
+        function applyTheme(theme) {
+          root.removeAttribute('data-article-theme');
+          if (theme && theme !== 'default') {
+            root.setAttribute('data-article-theme', theme);
+          }
+          buttons.forEach(btn => {
+            btn.classList.toggle('active', btn.getAttribute('data-theme') === theme);
+          });
+          try {
+            localStorage.setItem('preferred-blog-theme', theme);
+          } catch (e) {}
+        }
+
+        buttons.forEach(btn => {
+          btn.addEventListener('click', () => {
+            const theme = btn.getAttribute('data-theme');
+            applyTheme(theme);
+          });
+        });
+
+        try {
+          const saved = localStorage.getItem('preferred-blog-theme');
+          if (saved) applyTheme(saved);
+        } catch (e) {}
+      })();
+    </script>
   </body>
 </html>

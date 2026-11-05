@@ -344,5 +344,23 @@ window.PORTFOLIO_DATA = {
     ],
   },
 
-  blogPosts: [],
+  blogPosts: [
+    {
+      id: "beyond-the-prompt-buildrelay",
+      category: "Design Notes // Experimental Project",
+      date: "Nov 2026",
+      readTime: "7 min read",
+      badge: "BuildRelay",
+      title: "Designing BuildRelay: Requirements, Review and Human Judgment in an Agent Workflow",
+      slug: "./blog/beyond-the-prompt-buildrelay.html",
+      summary:
+        "Design notes on an experimental agent workflow: clarifying requirements, separating responsibilities, and combining automated checks with human review.",
+      tags: ["Multi-Agent Workflows", "System Design", "BuildRelay", "Process Supervision", "Human-in-the-Loop"],
+      highlights: [
+        "Process supervision & behavior specs: clarifying expectations upfront instead of managing drift",
+        "Explicit roles & routing: Natasha (coordinator), Odin (researcher), Taghi (architect), Meti (implementer), Dana (supervisor)",
+        "Treating review as diverse evidence: phase-check results, model-based critique, and human judgment",
+      ],
+    },
+  ],
 };
